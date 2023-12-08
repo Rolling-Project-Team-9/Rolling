@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["webpack.config.js"],
+  "extends": ["airbnb", "airbnb/hooks"],
+  "plugins": ["prettier", "import"],
+  "settings": {
+    "import/resolver": {}
+  }
+}
