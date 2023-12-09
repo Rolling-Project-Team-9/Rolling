@@ -18,5 +18,6 @@
   "plugins": ["prettier", "import"],
   "settings": {
     "import/resolver": {}
-  }
+  },
+  "func-style": ["error", "declaration"]
 }
