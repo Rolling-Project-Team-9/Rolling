@@ -54,7 +54,7 @@ const DESIGN_TOKEN = {
     font14Bold: ['font-size: 1.4rem; line-height: 2rem; letter-spacing: -0.07rem; font-weight: 700;'],
     font15Regular: ['font-size: 1.5rem; line-height: 2.2rem; letter-spacing: -0.015rem; font-weight: 400;'],
     font15Bold: ['font-size: 1.5rem; line-height: 2.2rem; letter-spacing: -0.015rem; font-weight: 700;'],
-    font16Regular: ['font-size: 1.6rem; line-height: 2.6rem; letter-spacing: -0.016rem; font-weight: 00;'],
+    font16Regular: ['font-size: 1.6rem; line-height: 2.6rem; letter-spacing: -0.016rem; font-weight: 400;'],
     font16Bold: ['font-size: 1.6rem; line-height: 2.6rem; letter-spacing: -0.016rem; font-weight: 700;'],
     font18Regular: ['font-size: 1.8rem; line-height: 2.8rem; letter-spacing: -0.018rem; font-weight: 400;'],
     font18Bold: ['font-size: 1.8rem; line-height: 2.8rem; letter-spacing: -0.018rem; font-weight: 700;'],
@@ -62,6 +62,7 @@ const DESIGN_TOKEN = {
     font20Bold: ['font-size: 2rem; line-height: 3rem; letter-spacing: -0.02rem; font-weight: 700;'],
     font24Regular: ['font-size: 2.4rem; line-height: 3.6rem; letter-spacing: -0.024rem; font-weight: 400;'],
     font24Bold: ['font-size: 2.4rem; line-height: 3.6rem; letter-spacing: -0.024rem; font-weight: 700;'],
+    font28Bold: ['font-size: 2.8rem; line-height: 4.2rem; letter-spacing: -0.028rem; font-weight: 700;'],
   },
   layout: {
     spacing: {
@@ -70,7 +71,7 @@ const DESIGN_TOKEN = {
     },
     breakpoint: {
       medium: '76.8rem',
-      largin: '120rem',
+      large: '120rem',
     },
     zIndex: {
       dropdown: 'z-index: 200',
@@ -82,7 +83,7 @@ const DESIGN_TOKEN = {
       toast: 'z-index: 1200',
     },
   },
-  boxshadow: {
+  boxShadow: {
     card: '0px 2px 12px 0px rgba(0, 0, 0, 0.08)',
   },
   overlay: {
