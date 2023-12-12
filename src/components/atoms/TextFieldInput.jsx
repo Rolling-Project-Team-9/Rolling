@@ -51,7 +51,7 @@ const ErrorMessage = styled.div`
 function TextFieldInput({ error }) {
   return (
     <Container>
-      <input type="text" placeholder="PlaceHolder" disabled />
+      <input type="text" placeholder="PlaceHolder" />
       {error && <ErrorMessage>값을 입력해 주세요.</ErrorMessage>}
     </Container>
   );
