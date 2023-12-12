@@ -7,9 +7,9 @@ function Layout() {
     <>
       <GlobalStyles />
       <div>GNB</div>
-      <div>
+      <main>
         <Outlet />
-      </div>
+      </main>
     </>
   );
 }
