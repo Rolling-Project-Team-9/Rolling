@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TestData from '../../Api/Api';
+import TestData from '../../api/api';
 import styles from '../../styles/tokens';
 
 const { color } = styles;
