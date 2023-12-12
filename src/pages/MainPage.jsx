@@ -1,15 +1,9 @@
 import React from 'react';
-import Badge from '../components/atoms/badge';
-import Toast from '../components/atoms/toast';
+import Avatar from '../components/atoms/Avatar';
+import DefaultAvatar from '../components/atoms/DefaultAvatar';
 
 function MainPage() {
-  return (
-    <>
-      <div>MainPage</div>
-      <Badge />
-      <Toast />
-    </>
-  );
+  return <div>MainPage</div>;
 }
 
 export default MainPage;
