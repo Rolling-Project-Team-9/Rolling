@@ -18,7 +18,11 @@
   "rules": {
     "react/prop-types": "off",
     "no-unused-vars": "off",
-    "prefer-destructuring": ["error", { "object": true, "array": false }]
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "implicit-arrow-linebreak": "off",
+    "operator-linebreak": "off",
+    "object-curly-newline": "off",
+    "max-len": "off"
   },
   "settings": {
     "import/resolver": {}
