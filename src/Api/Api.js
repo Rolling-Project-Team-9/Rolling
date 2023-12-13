@@ -22,7 +22,7 @@ export const ReactionData = async () => {
 };
 
 export const exData = async () => {
-  const response = await fetch(`${TEAM_API_URL}/recipients/936/`);
+  const response = await fetch(`${TEAM_API_URL}/recipients/934/`);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
