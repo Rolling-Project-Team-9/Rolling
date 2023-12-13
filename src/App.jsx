@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import React from 'react';
-import Layout from '../Layout';
-import MainPage from '../pages/MainPage';
-import ListPage from '../pages/ListPage';
-import PostPage from '../pages/PostPage';
-import PostIdPage from '../pages/PostIdPage';
-import MessagePage from '../pages/MessagePage';
-import EditPage from '../pages/EditPage';
-import NotFoundPage from '../pages/NotFoundPage';
+import Layout from './components/Layout';
+import MainPage from './pages/MainPage';
+import ListPage from './pages/ListPage';
+import CreatePage from './pages/CreatePage';
+import PostPage from './pages/PostPage';
+import MessagePage from './pages/MessagePage';
+import EditPage from './pages/EditPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -17,9 +17,9 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="list" element={<ListPage />} />
           <Route path="post">
-            <Route index element={<PostPage />} />
+            <Route index element={<CreatePage />} />
             <Route path="id">
-              <Route index element={<PostIdPage />} />
+              <Route index element={<PostPage />} />
               <Route path="message" element={<MessagePage />} />
               <Route path="edit" element={<EditPage />} />
             </Route>

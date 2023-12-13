@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import emptyAvatarImgSrc from '../../assets/avatar.png';
+import emptyAvatarImgSrc from '../../assets/images/avatar.png';
 
 const { color } = DESIGN_TOKEN;
 const AVATAR_SIZE = {

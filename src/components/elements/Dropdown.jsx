@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import upArrow from '../../assets/images/arrow_up.svg';
-import downArow from '../../assets/images/arrow_down.svg';
+import upArrow from '../../assets/icons/arrow_up.svg';
+import downArow from '../../assets/icons/arrow_down.svg';
 
 const { color } = DESIGN_TOKEN;
 

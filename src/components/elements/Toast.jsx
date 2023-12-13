@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import styles from '../../styles/tokens';
-import toastIconImg from '../../assets/toastIcon.svg';
-import exitImg from '../../assets/exit.svg';
+import toastIconImg from '../../assets/icons/toastIcon.svg';
+import exitImg from '../../assets/icons/exit.svg';
 
 const { color } = styles;
-
-let backgroundColor = '';
-backgroundColor = color.black;
 
 const ToastDiv = styled.div`
   display: flex;
@@ -20,9 +17,6 @@ const ToastDiv = styled.div`
   border-radius: 0.8rem;
   background: ${(props) => props.backgroundColor};
 `;
-
-let textColor = '';
-textColor = color.white;
 
 const UrlCopyText = styled.p`
   color: ${(props) => props.textColor};
@@ -53,10 +47,10 @@ const ExitIcon = styled.img`
 
 function Toast() {
   return (
-    <ToastDiv backgroundColor={backgroundColor}>
+    <ToastDiv backgroundColor={color.black}>
       <UrlCopyDiv>
         <ToastIcon src={toastIconImg} />
-        <UrlCopyText textColor={textColor}>URL이 복사 되었습니다.</UrlCopyText>
+        <UrlCopyText textColor={color.white}>URL이 복사 되었습니다.</UrlCopyText>
       </UrlCopyDiv>
       <ExitIcon src={exitImg} />
     </ToastDiv>
