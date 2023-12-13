@@ -29,3 +29,12 @@ export const exData = async () => {
   const data = await response.json();
   return data;
 };
+
+export const getApi = async (type = 'recipitents/', id = '', messages = '') => {
+  const response = await fetch(`${TEAM_API_URL}/${type}${id}${messages}`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+};
