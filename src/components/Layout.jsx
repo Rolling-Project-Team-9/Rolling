@@ -1,12 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import GlobalStyles from '../styles/globalStyle';
+import GNB from './GNB';
 
 function Layout() {
   return (
     <>
       <GlobalStyles />
-      <div>GNB</div>
+      <GNB />
       <main>
         <Outlet />
       </main>
