@@ -30,7 +30,7 @@ export const exData = async () => {
   return data;
 };
 
-export const getApi = async (type = 'recipitents/', id = '', messages = '') => {
+export const getApi = async (type = 'recipients/', id = '', messages = '') => {
   const response = await fetch(`${TEAM_API_URL}/${type}${id}${messages}`);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);

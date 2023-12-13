@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
+import Button from './elements/Button';
 
 const LogoIcon = styled.img`
   width: 107px;
@@ -26,11 +27,11 @@ const GnbBottomLine = styled.div`
 `;
 
 function GNB() {
+  const [hasButton, setHasButton] = useState(false);
   const navigate = useNavigate();
   const onClick = () => navigate('/post');
-  const [hasButton, setHasButton] = useState(false);
-
   const location = useLocation();
+
   const handleButtonDisplay = useCallback(() => {
     if (location.pathname === '/' || location.pathname === '/list') {
       setHasButton(true);
@@ -38,6 +39,7 @@ function GNB() {
     }
     setHasButton(false);
   }, [location.pathname]);
+
   useEffect(() => {
     handleButtonDisplay();
   }, [handleButtonDisplay]);
@@ -49,9 +51,9 @@ function GNB() {
           <LogoIcon src={logo} alt="logo" />
         </Link>
         {hasButton && (
-          <button type="button" onClick={onClick}>
+          <Button variant="outlined" width="157" height="large" type="button" onClick={onClick}>
             롤링 페이퍼 만들기
-          </button>
+          </Button>
         )}
       </Container>
       <GnbBottomLine />
