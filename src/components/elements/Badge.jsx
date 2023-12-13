@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import TestData from '../../api/api';
+import { TestData } from '../../api/api';
 import styles from '../../styles/tokens';
 
 const { color } = styles;
@@ -38,38 +38,40 @@ function Badge() {
 
   return (
     <>
-      {data.map((item) => {
-        let backgroundColor = '';
-        let textColor = '';
+      {data
+        .filter((item) => ['가족', '지인', '동료', '친구'].includes(item.relationship))
+        .map((item) => {
+          let backgroundColor = '';
+          let textColor = '';
 
-        switch (item.relationship) {
-          case '동료':
-            backgroundColor = color.purple[100];
-            textColor = color.purple[600];
-            break;
-          case '지인':
-            backgroundColor = color.orange[100];
-            textColor = color.orange[500];
-            break;
-          case '친구':
-            backgroundColor = color.blue[100];
-            textColor = color.blue[500];
-            break;
-          case '가족':
-            backgroundColor = color.green[100];
-            textColor = color.green[500];
-            break;
-          default:
-            backgroundColor = '';
-            textColor = '';
-        }
+          switch (item.relationship) {
+            case '동료':
+              backgroundColor = color.purple[100];
+              textColor = color.purple[600];
+              break;
+            case '지인':
+              backgroundColor = color.orange[100];
+              textColor = color.orange[500];
+              break;
+            case '친구':
+              backgroundColor = color.blue[100];
+              textColor = color.blue[500];
+              break;
+            case '가족':
+              backgroundColor = color.green[100];
+              textColor = color.green[500];
+              break;
+            default:
+              backgroundColor = '';
+              textColor = '';
+          }
 
-        return (
-          <BadgeDiv key={item.id} backgroundColor={backgroundColor} textColor={textColor}>
-            {item.relationship}
-          </BadgeDiv>
-        );
-      })}
+          return (
+            <BadgeDiv key={item.id} backgroundColor={backgroundColor} textColor={textColor}>
+              {item.relationship}
+            </BadgeDiv>
+          );
+        })}
     </>
   );
 }
