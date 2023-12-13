@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import GlobalStyles from './styles/globalStyle';
-import GNB from './components/molecules/GNB';
+import GlobalStyles from '../styles/globalStyle';
+import GNB from './GNB';
 
 function Layout() {
   return (
