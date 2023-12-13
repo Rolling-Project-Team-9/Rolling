@@ -20,3 +20,12 @@ export const ReactionData = async () => {
   const result = data.results;
   return result;
 };
+
+export const exData = async () => {
+  const response = await fetch(`${TEAM_API_URL}/recipients/936/reactions/`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  return data;
+};
