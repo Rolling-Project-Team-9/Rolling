@@ -4,7 +4,7 @@ import styles from '../../styles/tokens';
 import toastIconImg from '../../assets/icons/toastIcon.svg';
 import exitImg from '../../assets/icons/exit.svg';
 
-const { color } = styles;
+const { color, overlayBackDropColor } = styles;
 
 const ToastDiv = styled.div`
   display: flex;
@@ -15,11 +15,11 @@ const ToastDiv = styled.div`
   align-items: center;
   flex-shrink: 0;
   border-radius: 0.8rem;
-  background: ${(props) => props.backgroundColor};
+  background: ${overlayBackDropColor.toast};
 `;
 
 const UrlCopyText = styled.p`
-  color: ${(props) => props.textColor};
+  color: ${color.white};
   font-family: Pretendard;
   font-size: 1.6rem;
   font-style: normal;
@@ -47,10 +47,10 @@ const ExitIcon = styled.img`
 
 function Toast() {
   return (
-    <ToastDiv backgroundColor={color.black}>
+    <ToastDiv>
       <UrlCopyDiv>
         <ToastIcon src={toastIconImg} />
-        <UrlCopyText textColor={color.white}>URL이 복사 되었습니다.</UrlCopyText>
+        <UrlCopyText>URL이 복사 되었습니다.</UrlCopyText>
       </UrlCopyDiv>
       <ExitIcon src={exitImg} />
     </ToastDiv>

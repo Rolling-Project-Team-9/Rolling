@@ -1,7 +1,8 @@
 import React from 'react';
+import Feature from '../components/main/Feature';
 
 function MainPage() {
-  return <div>MainPage</div>;
+  return <Feature />;
 }
 
 export default MainPage;
