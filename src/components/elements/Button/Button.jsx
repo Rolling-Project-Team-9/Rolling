@@ -1,14 +1,6 @@
 import React from 'react';
 import { css, styled } from 'styled-components';
-import addBlack from '../../assets/icons/add-24-black.svg';
-import addWhite from '../../assets/icons/add-24-white.svg';
-import deletedBlack from '../../assets/icons/deleted_black.svg';
-import deletedWhite from '../../assets/icons/deleted_white.svg';
-import plusIcon from '../../assets/icons/plus.svg';
-import shareIcon from '../../assets/icons/share-24.svg';
-import checkIcon from '../../assets/icons/check.svg';
-import editIcon from '../../assets/icons/edit.svg';
-import DESIGN_TOKEN from '../../styles/tokens';
+import DESIGN_TOKEN from '../../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
@@ -118,17 +110,18 @@ const Container = styled.button`
     `}
 `;
 
-const IconAdd = styled.img`
-  ${({ width }) => width}
-  ${({ height }) => height}
+const changeColorWhite =
+  'filter:invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);';
+
+const Icon = styled.img`
+  ${({ height }) => (height === 'small' ? 'height: 2rem;' : 'height: 2.4rem;')};
+  ${({ disabled }) => disabled && changeColorWhite};
 `;
 
 function Button({ children, variant, width, height, disabled, icon, onClick }) {
-  const iconAdd = disabled ? addWhite : addBlack;
-
   return (
-    <Container width={width} height={height} variant={variant} disabled={disabled} icon={icon} onClick={onClick}>
-      {icon && <IconAdd src={iconAdd} alt="이모티콘 추가하기" heights={height} />}
+    <Container width={width} height={height} variant={variant} icon={icon} onClick={onClick} disabled={disabled}>
+      {icon && <Icon src={icon.img} alt={icon.alt} height={height} disabled={disabled} />}
       {children}
     </Container>
   );
