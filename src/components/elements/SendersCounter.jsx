@@ -13,7 +13,7 @@ const BoldText = styled.span`
   font-weight: 700;
 `;
 
-function ContributorStats({ font = 'font16Regular', colorNum = 700, sendersCount = 4 }) {
+function SendersCounter({ font = 'font16Regular', colorNum = 700, sendersCount = 4 }) {
   return (
     <SendersSpan font={font} colorNum={colorNum}>
       <BoldText>{sendersCount}</BoldText>
@@ -22,4 +22,4 @@ function ContributorStats({ font = 'font16Regular', colorNum = 700, sendersCount
   );
 }
 
-export default ContributorStats;
+export default SendersCounter;
