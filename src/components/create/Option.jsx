@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import Enabled from '../../assets/images/Enabled.png';
+import Check from '../../assets/images/checkbutton.png';
 import testimg1 from '../../assets/images/testimg1.png';
 import testimg2 from '../../assets/images/testimg2.png';
 import testimg3 from '../../assets/images/testimg3.png';
@@ -79,14 +79,14 @@ function Option() {
   const items = ['orange', 'purple', 'blue', 'green'];
   const bgColor = items.map((bg, index) => (
     <SelectedColor key={items.index} bg={bg} isSelected={index === selectedColor} onClick={() => handleClick(index)}>
-      <CheckImg src={Enabled} isSelected={index === selectedColor} alt="선택 이미지" />
+      <CheckImg src={Check} isSelected={index === selectedColor} alt="선택 이미지" />
     </SelectedColor>
   ));
 
   const testimg = [testimg1, testimg2, testimg3, testimg4];
   const bgImg = testimg.map((bg, index) => (
     <SelectedImg key={items.index} bg={bg} isSelected={index === selectedImg} onClick={() => handleClick(index)}>
-      <CheckImg src={Enabled} isSelected={index === selectedImg} alt="선택 이미지" />
+      <CheckImg src={Check} isSelected={index === selectedImg} alt="선택 이미지" />
     </SelectedImg>
   ));
 
