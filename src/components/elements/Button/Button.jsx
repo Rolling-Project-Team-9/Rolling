@@ -4,44 +4,44 @@ import DESIGN_TOKEN from '../../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
-const SIZE = {
+const HEIGHT = {
   small: '2.8rem',
   medium: '3.6rem',
   large: '4rem',
   'x-large': '5.6rem',
 };
 
-const HEIGHT = {
+const HEIGHT_STYLE = {
   small: css`
     padding: 0.2rem 1.6rem;
-    height: ${SIZE.small};
+    height: ${HEIGHT.small};
     ${typography.font14Regular}
   `,
 
   medium: css`
     padding: 0.6rem 1.6rem;
-    height: ${SIZE.medium};
+    height: ${HEIGHT.medium};
     font-size: 1.6rem;
-    line-height: 2.6rem;
+    line-height: 2.4rem;
     letter-spacing: -0.016rem;
     font-weight: 500;
   `,
 
   large: css`
     padding: 0.8rem 1.6rem;
-    height: ${SIZE.large};
+    height: ${HEIGHT.large};
     ${typography.font16Regular}
   `,
 
   'x-large': css`
     border-radius: 1.2rem;
     padding: 1.4rem 1.6rem;
-    height: ${SIZE['x-large']};
+    height: ${HEIGHT['x-large']};
     ${typography.font18Bold}
   `,
 };
 
-const VARIANT = {
+const VARIANT_STYLE = {
   primary: css`
     background-color: ${color.purple[600]};
     color: ${color.white};
@@ -93,13 +93,14 @@ const Container = styled.button`
   border-radius: 0.6rem;
   ${({ width }) => (width ? `width: ${width / 10}rem;` : 'width: 100%;')};
   ${({ height }) => css`
-    ${HEIGHT[height]}
+    ${HEIGHT_STYLE[height]}
   `};
   ${({ variant }) => css`
-    ${VARIANT[variant]}
-  `}
+    ${VARIANT_STYLE[variant]}
+  `};
 
   transition: background-color 0.2s ease;
+
   ${({ disabled }) =>
     disabled &&
     css`
@@ -107,11 +108,17 @@ const Container = styled.button`
       background-color: ${color.gray[300]};
       color: ${color.white};
       pointer-events: none;
-    `}
+    `};
+
+  ${({ children }) =>
+    children &&
+    css`
+      padding: 0.6rem 0.6rem;
+    `};
 `;
 
 const changeColorWhite =
-  'filter:invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);';
+  'filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);';
 
 const Icon = styled.img`
   ${({ height }) => (height === 'small' ? 'height: 2rem;' : 'height: 2.4rem;')};
@@ -120,7 +127,7 @@ const Icon = styled.img`
 
 function Button({ children, variant, width, height, disabled, icon, onClick }) {
   return (
-    <Container width={width} height={height} variant={variant} icon={icon} onClick={onClick} disabled={disabled}>
+    <Container variant={variant} width={width} height={height} icon={icon} onClick={onClick} disabled={disabled}>
       {icon && <Icon src={icon.img} alt={icon.alt} height={height} disabled={disabled} />}
       {children}
     </Container>

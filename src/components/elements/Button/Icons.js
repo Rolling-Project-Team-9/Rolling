@@ -9,7 +9,7 @@ import shareIcon from '../../../assets/icons/share.svg';
 const ICONS = {
   add: { img: addIcon, alt: '이모티콘 추가하기' },
   plus: { img: plusIcon, alt: '롤링페이퍼 만들기' },
-  delete: { img: deleteIcon, alt: '롤링페이퍼 삭제하기' },
+  deleted: { img: deleteIcon, alt: '롤링페이퍼 삭제하기' },
   edit: { img: editIcon, alt: '메세지 수정하기' },
   close: { img: closeIcon, alt: '닫기' },
   check: { img: checkIcon, alt: '확인' },
