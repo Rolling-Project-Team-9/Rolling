@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { ReactionData } from '../../api/api';
 import styles from '../../styles/tokens';
 
-const { color } = styles;
+const { color, overlayBackDropColor } = styles;
 
-const Emojidiv = styled.div`
+const EmojiDiv = styled.div`
   display: inline-flex;
   margin-right: 0.8rem;
   padding: 0.8rem 1.2rem;
@@ -13,12 +13,11 @@ const Emojidiv = styled.div`
   align-items: center;
   gap: 1rem;
   border-radius: 32px;
-  background: rgba(0, 0, 0, 0.54);
+  background: ${overlayBackDropColor.badge};
 `;
 
 const EmojiStyle = styled.p`
-  color: ${(props) => props.textColor};
-  font-family: Pretendard;
+  color: ${color.black};
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -26,8 +25,7 @@ const EmojiStyle = styled.p`
 `;
 
 const EmojiCount = styled.p`
-  color: ${(props) => props.textColor};
-  font-family: Pretendard;
+  color: ${color.white};
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
@@ -53,10 +51,10 @@ function Emoji() {
   return (
     <>
       {data.map((item) => (
-        <Emojidiv key={item.id}>
-          <EmojiStyle textColor={color.black}>{item.emoji}</EmojiStyle>
-          <EmojiCount textColor={color.white}>{item.count}</EmojiCount>
-        </Emojidiv>
+        <EmojiDiv key={item.id}>
+          <EmojiStyle>{item.emoji}</EmojiStyle>
+          <EmojiCount>{item.count}</EmojiCount>
+        </EmojiDiv>
       ))}
     </>
   );
