@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Avatar from './Avatar';
 import DESIGN_TOKEN from '../../styles/tokens';
+import Avatar from './Avatar';
 
 const { color, typography } = DESIGN_TOKEN;
 
@@ -36,16 +36,16 @@ const RestDiv = styled(AvatarDiv)`
   z-index: 3;
 `;
 
-function Avatars({ left, recentMessages, sendersCount }) {
+function Avatars({ left, recentMessages, messageCount }) {
   return (
     <AvatarsDiv $left={left}>
       {recentMessages?.map((item, index) => (
         <AvatarDiv key={item.id} $zIndex={index} order={index}>
-          <Avatar size="small" avatarImgSrc={item.profileImageURL} />
+          <Avatar key={item.id} size="small" $avatarImgSrc={item.profileImageURL} />
         </AvatarDiv>
       ))}
       {/* eslint-disable-next-line */}
-      {sendersCount > 3 && <RestDiv>+{sendersCount - 3}</RestDiv>}
+      {messageCount > 3 && <RestDiv>+{messageCount - 3}</RestDiv>}
     </AvatarsDiv>
   );
 }

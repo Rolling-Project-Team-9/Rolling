@@ -1,7 +1,12 @@
 import React from 'react';
+import CardList from '../components/list/CardList';
 
 function ListPage() {
-  return <div>ListPage</div>;
+  return (
+    <div>
+      <CardList />
+    </div>
+  );
 }
 
 export default ListPage;
