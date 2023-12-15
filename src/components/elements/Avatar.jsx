@@ -21,8 +21,8 @@ const Img = styled.img`
   background: ${color.gray[300]};
 `;
 
-function Avatar({ size = 'medium', profileImageURL, alt = '프로필 이미지' }) {
-  return <Img size={size} src={profileImageURL} alt={alt} />;
+function Avatar({ size = 'medium', $avatarImgSrc = emptyAvatarImgSrc, alt = '프로필 이미지' }) {
+  return <Img size={size} src={$avatarImgSrc} alt={alt} />;
 }
 
 export default Avatar;
