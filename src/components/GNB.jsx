@@ -21,7 +21,7 @@ const Container = styled.div`
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
 `;
-const GnbBottomLine = styled.div`
+const HorizontalDivider = styled.div`
   height: 0.1rem;
   background-color: #ededed;
 `;
@@ -56,7 +56,7 @@ function GNB() {
           </Button>
         )}
       </Container>
-      <GnbBottomLine />
+      <HorizontalDivider />
     </>
   );
 }

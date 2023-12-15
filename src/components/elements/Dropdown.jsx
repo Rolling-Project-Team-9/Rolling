@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 import upArrow from '../../assets/icons/arrow_up.svg';
-import downArow from '../../assets/icons/arrow_down.svg';
+import downArrow from '../../assets/icons/arrow_down.svg';
 
 const { color } = DESIGN_TOKEN;
 
@@ -96,7 +96,7 @@ function Dropdown() {
     <Container ref={containerRef}>
       <button type="button" onClick={toggleDropdown}>
         {selectedMenuItem || 'PlaceHolder'}
-        <img src={isOpen ? upArrow : downArow} alt="Arrow" />
+        <img src={isOpen ? upArrow : downArrow} alt="Arrow" />
       </button>
       {isOpen && (
         <Ul>
