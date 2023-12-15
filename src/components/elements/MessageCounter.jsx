@@ -4,22 +4,21 @@ import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
-const SendersSpan = styled.span`
+const Span = styled.span`
   color: ${({ $colorNum }) => $colorNum && color.gray[$colorNum]};
   ${({ $font }) => $font && typography[$font]}
-  margin-right: 1.5rem;
 `;
 
 const BoldText = styled.span`
   font-weight: 700;
 `;
 
-function MessageCounter({ font = 'font16Regular', colorNum = 700, sendersCount = 4 }) {
+function MessageCounter({ colorNum = 700, font = 'font16Regular', messageCount = 0 }) {
   return (
-    <SendersSpan $font={font} $colorNum={colorNum}>
-      <BoldText>{sendersCount}</BoldText>
+    <Span $font={font} $colorNum={colorNum}>
+      <BoldText>{messageCount}</BoldText>
       명이 작성했어요!
-    </SendersSpan>
+    </Span>
   );
 }
 
