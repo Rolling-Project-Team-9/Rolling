@@ -4,8 +4,9 @@ import introducePoint1 from '../../assets/images/cardBundle.png';
 import introducePoint2 from '../../assets/images/emojiBundle.png';
 import PointCard from './PointCard';
 import styles from '../../styles/tokens';
+import Button from '../elements/Button/Button';
 
-const { layout, color, typography } = styles;
+const { layout } = styles;
 
 const content1 = {
   point: 'Point. 01',
@@ -28,9 +29,9 @@ function Feature() {
     <Container>
       <PointCard content={content1} />
       <PointCard content={content2} $isReverse />
-      <MainButton>
-        <MainButtonText>구경해보기</MainButtonText>
-      </MainButton>
+      <Button type="button" width="280" height="x-large" variant="primary">
+        구경해보기
+      </Button>
     </Container>
   );
 }
@@ -47,31 +48,4 @@ const Container = styled.div`
   @media (max-width: ${layout.breakpoint.pc}) {
     margin-top: 4.9rem;
   }
-`;
-
-const MainButton = styled.div`
-  display: flex;
-  width: 28rem;
-  padding: 1.4rem 2.4rem;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  border-radius: 1.2rem;
-  background: ${color.purple[600]};
-
-  @media (max-width: ${layout.breakpoint.pc}) {
-    width: calc(100vw - 4.9rem);
-    bottom: 2.4rem;
-  }
-
-  @media (max-width: ${layout.breakpoint.mobile}) {
-    width: calc(100vw - 4.9rem);
-    bottom: 2.4rem;
-  }
-`;
-
-const MainButtonText = styled.button`
-  color: ${color.white};
-  text-align: center;
-  ${typography.font18Bold}
 `;
