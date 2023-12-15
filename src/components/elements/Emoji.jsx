@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { ReactionData } from '../../api/api';
 import styles from '../../styles/tokens';
 
 const { color, overlayBackDropColor } = styles;
 
 const EmojiDiv = styled.div`
   display: inline-flex;
-  margin-right: 0.8rem;
   padding: 0.8rem 1.2rem;
   justify-content: center;
   align-items: center;
@@ -32,32 +30,13 @@ const EmojiCount = styled.p`
   line-height: 2rem;
 `;
 
-function Emoji() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await ReactionData();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  return (
-    <>
-      {data.map((item) => (
-        <EmojiDiv key={item.id}>
-          <EmojiStyle>{item.emoji}</EmojiStyle>
-          <EmojiCount>{item.count}</EmojiCount>
-        </EmojiDiv>
-      ))}
-    </>
-  );
+function Emoji({ reactions }) {
+  return reactions?.map((item) => (
+    <EmojiDiv key={item.id}>
+      <EmojiStyle>{item.emoji}</EmojiStyle>
+      <EmojiCount>{item.count}</EmojiCount>
+    </EmojiDiv>
+  ));
 }
 
 export default Emoji;

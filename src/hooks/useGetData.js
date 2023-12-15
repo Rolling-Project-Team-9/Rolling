@@ -1,6 +1,6 @@
-import api from '../api/api';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/api';
 
 function useGetData(type, path, limit, offset) {
   const [data, setData] = useState();

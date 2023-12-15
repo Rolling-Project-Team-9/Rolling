@@ -1,7 +1,8 @@
 import React from 'react';
+import HeaderService from '../components/HeaderService';
 
 function PostPage() {
-  return <div>PostIdPage</div>;
+  return <HeaderService />;
 }
 
 export default PostPage;

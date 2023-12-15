@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { exData } from '../../api/api';
 import Avatar from './Avatar';
 import DESIGN_TOKEN from '../../styles/tokens';
 
@@ -13,12 +12,13 @@ const AvatarsDiv = styled.div`
   position: relative;
   width: 11.2rem;
   height: 2.8rem;
+  ${({ $left }) => $left && `left:${$left / 10}rem`}
 `;
 
 const AvatarDiv = styled.div`
   display: flex;
   position: relative;
-  ${({ zIndex }) => `z-index:${zIndex}`};
+  ${({ $zIndex }) => `z-index:${$zIndex}`};
   right: ${({ order }) => `${1.2 * order}rem`};
   width: 2.8rem;
   height: 2.8rem;
@@ -36,28 +36,12 @@ const RestDiv = styled(AvatarDiv)`
   z-index: 3;
 `;
 
-function Avatars() {
-  const [sendersCount, setSendersCount] = useState();
-  const [sendersImg, setSendersImg] = useState([]);
-
-  useEffect(() => {
-    const getSenders = async () => {
-      const data = await exData();
-      const { recentMessages } = data;
-      setSendersImg(recentMessages.map((sender) => sender.profileImageURL));
-      if (data.messageCount >= 102) {
-        setSendersCount(102);
-        return;
-      }
-      setSendersCount(data.messageCount);
-    };
-    getSenders();
-  }, []);
+function Avatars({ left, recentMessages, sendersCount }) {
   return (
-    <AvatarsDiv>
-      {sendersImg.map((item, index) => (
-        <AvatarDiv zIndex={index} order={index}>
-          <Avatar size="small" avatarImgSrc={item} />
+    <AvatarsDiv $left={left}>
+      {recentMessages?.map((item, index) => (
+        <AvatarDiv key={item.id} $zIndex={index} order={index}>
+          <Avatar size="small" avatarImgSrc={item.profileImageURL} />
         </AvatarDiv>
       ))}
       {/* eslint-disable-next-line */}
