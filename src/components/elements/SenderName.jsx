@@ -4,8 +4,7 @@ import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
-function SenderName({ colorNum, font }) {
-  const name = '김동훈';
+function SenderName({ colorNum, font, name }) {
   const senderName = `From. ${name} `;
   return (
     <Wrapper font={font} colorNum={colorNum}>
