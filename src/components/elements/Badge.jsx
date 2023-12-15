@@ -16,8 +16,8 @@ const BadgeDiv = styled.div`
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 150%;
-  background-color: ${(props) => props.backgroundColor};
-  color: ${(props) => props.textColor};
+  background-color: ${(props) => props.$backgroundColor};
+  color: ${(props) => props.$textColor};
 `;
 
 function Badge() {
@@ -39,7 +39,7 @@ function Badge() {
   return (
     <>
       {data
-        .filter((item) => ['가족', '지인', '동료', '친구'].includes(item.relationship))
+        .filter((item) => ['가족'].includes(item.relationship))
         .map((item) => {
           let backgroundColor = '';
           let textColor = '';
@@ -67,7 +67,7 @@ function Badge() {
           }
 
           return (
-            <BadgeDiv key={item.id} backgroundColor={backgroundColor} textColor={textColor}>
+            <BadgeDiv key={item.id} $backgroundColor={backgroundColor} $textColor={textColor}>
               {item.relationship}
             </BadgeDiv>
           );
