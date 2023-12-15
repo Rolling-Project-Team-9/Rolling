@@ -11,8 +11,9 @@ import ICONS from '../elements/Button/Icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function Card() {
+function Card({ sender, profileImageURL, relationship, content, createdAt }) {
   const [hasButton, setHasButton] = useState(false);
+
   const location = useLocation();
 
   const handleButtonDisplay = useCallback(() => {
@@ -27,25 +28,18 @@ function Card() {
     <Container>
       <Wrapper>
         <Profile>
-          <Avatar />
+          <Avatar profileImageURL={profileImageURL} />
           <SenderProfile>
-            <SenderName />
-            <Badge />
+            <SenderName name={sender} />
+            <Badge relationship={relationship} />
           </SenderProfile>
         </Profile>
         {hasButton && <Button icon={ICONS.delete} variant="outlined" width="40" height="delete" type="button" />}
       </Wrapper>
       <Outlined />
-      <TextFeild>
-        이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요 이것은 한글입니다, 안녕하세요 반갑습니다
-        잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다
-        잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다
-        잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다
-        잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다
-        잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다 잘부탁드려요이것은 한글입니다, 안녕하세요 반갑습니다
-      </TextFeild>
+      <TextFeild>{content}</TextFeild>
       <DateContainer>
-        <Date font="font12Regular" />
+        <Date font="font12Regular" createdAt={createdAt} />
       </DateContainer>
     </Container>
   );
@@ -88,7 +82,7 @@ const Outlined = styled.div`
 
 const TextFeild = styled.div`
   width: 33.6rem;
-  height: 10rem;
+  height: 10.6rem;
   margin: auto 2.4rem;
   overflow: hidden;
   display: -webkit-box;
