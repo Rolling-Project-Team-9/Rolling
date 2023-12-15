@@ -5,12 +5,12 @@ import Avatars from './elements/Avatars';
 import SendersCounter from './elements/MessageCounter';
 import Emoji from './elements/Emoji';
 import Button from './elements/Button/Button';
-import Icons from './elements/Button/Icons';
+import Icons from './elements/Button/icons';
 import RecipientName from './elements/RecipientName';
 import { getApi } from '../api/api';
 
 const { color, boxShadow } = DESIGN_TOKEN;
-const { add, share, arrowDown } = Icons;
+const { add, share, arrow } = Icons;
 
 function HeaderService() {
   const [disabled, setDisabled] = useState(false);
@@ -74,7 +74,7 @@ function HeaderService() {
             <Emojis>
               <Emoji reactions={topReactions} />
             </Emojis>
-            <Button width="36" height="medium" icon={arrowDown} onClick={handleArrowButtonClick} />
+            <Button width="36" height="medium" icon={arrow.down} onClick={handleArrowButtonClick} />
             {isOpen && (
               <EmojiExpanded>
                 <Emoji reactions={results} />
@@ -85,7 +85,7 @@ function HeaderService() {
             variant="outlined"
             width="90"
             height="medium"
-            icon={add}
+            icon={disabled ? add.white : add.black}
             disabled={disabled}
             onClick={handleAddReactionClick}
           >
