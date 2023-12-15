@@ -15,7 +15,7 @@ const DESIGN_TOKEN = {
       800: '#6E0AD1',
       900: '#5603A7',
     },
-    orange: {
+    beige: {
       100: '#FFF0D6',
       200: '#FFE2AD',
       300: '#FFC583',

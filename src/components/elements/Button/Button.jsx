@@ -33,6 +33,12 @@ const HEIGHT_STYLE = {
     ${typography.font16Regular}
   `,
 
+  delete: css`
+    padding: 0.8rem;
+    height: ${SIZE.large};
+    ${typography.font16Regular}
+  `,
+
   'x-large': css`
     border-radius: 1.2rem;
     padding: 1.4rem 1.6rem;
