@@ -84,8 +84,8 @@ const VARIANT_STYLE = {
     }
   `,
   floating: css`
-    width: 5.6rem;
-    height: 5.6rem;
+    width: ${HEIGHT['x-large']};
+    height: ${HEIGHT['x-large']};
     border-radius: 50%;
     background-color: ${color.gray[500]};
     &:enabled {
@@ -134,18 +134,14 @@ const Container = styled.button`
     `};
 `;
 
-const changeColorWhite =
-  'filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);';
-
 const Icon = styled.img`
   ${({ height }) => (height === 'small' ? 'height: 2rem;' : 'height: 2.4rem;')};
-  ${({ variant, disabled }) => !variant === 'floating' && disabled && changeColorWhite};
 `;
 
 function Button({ children, variant, width, height, disabled, icon, onClick }) {
   return (
     <Container variant={variant} width={width} height={height} icon={icon} onClick={onClick} disabled={disabled}>
-      {icon && <Icon src={icon.img} alt={icon.alt} height={height} disabled={disabled} />}
+      {icon && <Icon src={icon.src} alt={icon.alt} height={height} disabled={disabled} />}
       {children}
     </Container>
   );
