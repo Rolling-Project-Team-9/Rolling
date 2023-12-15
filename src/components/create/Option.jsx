@@ -76,7 +76,7 @@ function Option() {
     setSelectedImg(null);
   };
 
-  const items = ['orange', 'purple', 'blue', 'green'];
+  const items = ['beige', 'purple', 'blue', 'green'];
   const bgColor = items.map((bg, index) => (
     <SelectedColor key={items.index} bg={bg} isSelected={index === selectedColor} onClick={() => handleClick(index)}>
       <CheckImg src={Check} isSelected={index === selectedColor} alt="선택 이미지" />

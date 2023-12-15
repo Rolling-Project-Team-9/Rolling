@@ -29,8 +29,8 @@ function Badge({ relationship }) {
       textColor = color.purple[600];
       break;
     case '지인':
-      backgroundColor = color.orange[100];
-      textColor = color.orange[500];
+      backgroundColor = color.beige[100];
+      textColor = color.beige[500];
       break;
     case '친구':
       backgroundColor = color.blue[100];
