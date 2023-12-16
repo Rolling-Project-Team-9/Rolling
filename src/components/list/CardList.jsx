@@ -13,15 +13,6 @@ const Container = styled.div`
 `;
 
 function CardList({ postList }) {
-  // const [postList, setPostList] = useState([]);
-  // useEffect(() => {
-  //   const getPostList = async () => {
-  //     const { results } = await getApi();
-  //     setPostList(results);
-  //   };
-  //   getPostList();
-  // }, []);
-
   return (
     <Container>
       {postList ? (
