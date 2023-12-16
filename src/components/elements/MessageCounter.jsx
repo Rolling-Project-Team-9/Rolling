@@ -5,6 +5,7 @@ import DESIGN_TOKEN from '../../styles/tokens';
 const { color, typography } = DESIGN_TOKEN;
 
 const Span = styled.span`
+  color: inherit;
   color: ${({ $colorNum }) => $colorNum && color.gray[$colorNum]};
   ${({ $font }) => $font && typography[$font]}
 `;
@@ -13,7 +14,7 @@ const BoldText = styled.span`
   font-weight: 700;
 `;
 
-function MessageCounter({ colorNum = 700, font = 'font16Regular', messageCount = 0 }) {
+function MessageCounter({ colorNum, font = 'font16Regular', messageCount = 0 }) {
   return (
     <Span $font={font} $colorNum={colorNum}>
       <BoldText>{messageCount}</BoldText>

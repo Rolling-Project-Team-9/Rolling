@@ -22,20 +22,45 @@ const CardContainer = styled.div`
   border-radius: 1.6rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: ${boxShadow.card};
-  ${({ $backgroundColor }) => {
+  ${({ $backgroundColor, $backgroundImgUrl }) => {
+    if ($backgroundImgUrl) {
+      return `
+        background-image: url(${$backgroundImgUrl});
+        background-position: center;
+        background-size: cover;
+      `;
+    }
     if ($backgroundColor === 'purple') {
-      return `background: ${color.purple[200]}; background-image: url(${pattern1}); background-position: right bottom; background-repeat: no-repeat`;
+      return `
+        background: ${color.purple[200]};
+        background-image: url(${pattern1});
+        background-position: right bottom;
+        background-repeat: no-repeat
+      `;
     }
     if ($backgroundColor === 'beige') {
-      return `background: ${color.orange[200]}; background-image: url(${pattern2}); background-position: right bottom; background-repeat: no-repeat`;
+      return `
+        background: ${color.beige[200]};
+        background-image: url(${pattern2});
+        background-position: right bottom;
+        background-repeat: no-repeat
+      `;
     }
     if ($backgroundColor === 'blue') {
-      return `background: ${color.blue[200]}; background-image: url(${pattern3}); background-position: right bottom; background-repeat: no-repeat`;
+      return `
+        background: ${color.blue[200]};
+        background-image: url(${pattern3});
+        background-position: right bottom;
+        background-repeat: no-repeat
+      `;
     }
-    return `background: ${color.green[200]}; background-image: url(${pattern4}); background-position: right bottom; background-repeat: no-repeat`;
+    return `
+      background: ${color.green[200]};
+      background-image: url(${pattern4});
+      background-position: right bottom;
+      background-repeat: no-repeat
+    `;
   }};
-  ${({ $backgroundImgUrl }) =>
-    $backgroundImgUrl && `background-image: url(${$backgroundImgUrl}) background-position: `};
 `;
 
 const CardOverlay = styled.div`
@@ -59,6 +84,7 @@ const CardWrapper = styled.div`
 
 const SenderContainer = styled.div`
   display: flex;
+  color: ${({ $fontColor }) => $fontColor && $fontColor};
   flex-direction: column;
   align-items: flex-start;
   gap: 1.2rem;
@@ -76,14 +102,22 @@ const EmojiContainer = styled.div`
 
 function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions }) {
   return (
-    <CardContainer $backgroundColor={backgroundColor}>
+    <CardContainer $backgroundColor={backgroundColor} $backgroundImgUrl={backgroundImgUrl}>
       {backgroundImgUrl && <CardOverlay />}
       <CardWrapper>
-        <SenderContainer>
-          <RecipientName colorNum="900" font="font24Bold" name={name} />
-          <Avatars recentMessages={recentMessages} messageCount={messageCount} />
-          <MessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
-        </SenderContainer>
+        {backgroundImgUrl ? (
+          <SenderContainer $fontColor="white">
+            <RecipientName font="font24Bold" name={name} />
+            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
+            <MessageCounter font="font16Regular" messageCount={messageCount} />
+          </SenderContainer>
+        ) : (
+          <SenderContainer>
+            <RecipientName colorNum="900" font="font24Bold" name={name} />
+            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
+            <MessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
+          </SenderContainer>
+        )}
         <EmojiContainer>
           <Emoji reactions={topReactions} />
         </EmojiContainer>
