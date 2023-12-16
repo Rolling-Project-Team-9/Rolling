@@ -12,15 +12,15 @@ const Container = styled.div`
   gap: 2rem;
 `;
 
-function CardList() {
-  const [postList, setPostList] = useState([]);
-  useEffect(() => {
-    const getPostList = async () => {
-      const { results } = await getApi();
-      setPostList(results);
-    };
-    getPostList();
-  }, []);
+function CardList({ postList }) {
+  // const [postList, setPostList] = useState([]);
+  // useEffect(() => {
+  //   const getPostList = async () => {
+  //     const { results } = await getApi();
+  //     setPostList(results);
+  //   };
+  //   getPostList();
+  // }, []);
 
   return (
     <Container>
