@@ -5,6 +5,7 @@ import DESIGN_TOKEN from '../../styles/tokens';
 const { color, typography } = DESIGN_TOKEN;
 
 const Wrapper = styled.div`
+  color: inherit;
   color: ${({ $colorNum }) => $colorNum && color.gray[$colorNum]};
   ${({ $font }) => $font && typography[$font]}
 `;

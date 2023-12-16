@@ -33,6 +33,7 @@ const RestDiv = styled(AvatarDiv)`
   border-radius: 10rem;
   background-color: ${color.white};
   ${typography.font12Regular};
+  color: ${color.gray[500]};
   z-index: 3;
 `;
 
