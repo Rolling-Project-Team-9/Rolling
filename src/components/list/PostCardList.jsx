@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Card from './Card';
+import PostCard from './PostCard';
 
 const Container = styled.div`
   display: inline-flex;
@@ -11,12 +11,12 @@ const Container = styled.div`
   gap: 2rem;
 `;
 
-function CardList({ postList }) {
+function PostCardList({ postList }) {
   return (
     <Container>
       {postList ? (
         postList.map((item) => (
-          <Card
+          <PostCard
             key={item?.id}
             name={item?.name}
             backgroundColor={item?.backgroundColor}
@@ -33,4 +33,4 @@ function CardList({ postList }) {
   );
 }
 
-export default CardList;
+export default PostCardList;

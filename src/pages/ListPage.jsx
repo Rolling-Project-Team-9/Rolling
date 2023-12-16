@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CardList from '../components/list/CardList';
+import PostCardList from '../components/list/PostCardList';
 import { getRecipientList } from '../api/users';
 import useAsync from '../hooks/useAsync';
 
@@ -17,7 +17,7 @@ function ListPage() {
 
   return (
     <div>
-      <CardList postList={postList} />
+      <PostCardList postList={postList} />
     </div>
   );
 }
