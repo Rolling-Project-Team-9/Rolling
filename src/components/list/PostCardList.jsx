@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 116rem;
   padding: 2rem;
   padding-left: 0;
-  overflow: scroll;
+  overflow: hidden;
   gap: 2rem;
 `;
 
