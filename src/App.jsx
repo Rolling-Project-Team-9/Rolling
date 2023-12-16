@@ -20,8 +20,8 @@ function App() {
             <Route index element={<CreatePage />} />
             <Route path=":id">
               <Route index element={<PostPage />} />
-              <Route path=":id/message" element={<MessagePage />} />
-              <Route path=":id/edit" element={<EditPage />} />
+              <Route path="message" element={<MessagePage />} />
+              <Route path="edit" element={<EditPage />} />
             </Route>
           </Route>
         </Route>
