@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../components/card/Card';
-import { getApi } from '../api/api';
+import { useParams } from 'react-router-dom';
+import { getRecipient, getRecipientList } from '../api/users';
+import useAsync from '../hooks/useAsync';
 import CardList from '../components/card/CardList';
+import HeaderService from '../components/HeaderService';
 
 function PostPage() {
+  const [isLoading, isError, getRecipientAsync] = useAsync(getRecipient);
   const [data, setData] = useState([]);
-  const [id, setId] = useState(936);
-
+  const { id } = useParams();
   const { name, messageCount, recentMessages, topReactions } = data;
 
   useEffect(() => {
     const handleHeaderServiceLoad = async (recipientId) => {
-      let result;
-      try {
-        result = await getApi('recipients/', `${recipientId}/`);
-      } catch (error) {
-        return;
-      }
+      const result = await getRecipientAsync(recipientId);
+      if (!result) return;
       const recipientData = result;
       if (recipientData) {
         setData(recipientData);
@@ -24,10 +22,17 @@ function PostPage() {
     };
 
     handleHeaderServiceLoad(id);
-  }, [id]);
+  }, [id, getRecipientAsync]);
+
   return (
     <div>
-      PostIdPage
+      <HeaderService
+        name={name}
+        messageCount={messageCount}
+        recentMessages={recentMessages}
+        topReactions={topReactions}
+        id={id}
+      />
       <CardList recentMessages={recentMessages} />
     </div>
   );

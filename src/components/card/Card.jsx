@@ -7,7 +7,7 @@ import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
 import Button from '../elements/Button/Button';
 import Date from '../elements/Date';
-import ICONS from '../elements/Button/Icons';
+import ICONS from '../elements/Button/icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
@@ -37,7 +37,7 @@ function Card({ sender, profileImageURL, relationship, content, createdAt }) {
         {hasButton && <Button icon={ICONS.delete} variant="outlined" width="40" height="delete" type="button" />}
       </Wrapper>
       <Outlined />
-      <TextFeild>{content}</TextFeild>
+      <TextField>{content}</TextField>
       <DateContainer>
         <Date font="font12Regular" createdAt={createdAt} />
       </DateContainer>
@@ -80,7 +80,7 @@ const Outlined = styled.div`
   margin: 0 2.4rem;
 `;
 
-const TextFeild = styled.div`
+const TextField = styled.div`
   width: 33.6rem;
   height: 10.6rem;
   margin: auto 2.4rem;
