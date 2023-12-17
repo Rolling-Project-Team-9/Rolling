@@ -74,3 +74,5 @@ export const pathApi = async (updateData, endPoint = ENDPOINT.MESSAGES) => {
   const body = await response.json();
   return body;
 };
+
+export default getApi;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 import Plusbutton from '../../assets/images/pulsbutton.png';
 
-const { boxShadow } = DESIGN_TOKEN;
+const { color, boxShadow } = DESIGN_TOKEN;
 
 function AddCard() {
   const navigate = useNavigate();
@@ -22,6 +22,7 @@ const Button = styled.button`
   height: 28rem;
   border-radius: 1.6rem;
   box-shadow: ${boxShadow.card};
+  background-color: ${color.white};
   position: relative;
 `;
 

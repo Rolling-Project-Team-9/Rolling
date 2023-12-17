@@ -5,11 +5,10 @@ import Avatar from '../elements/Avatar';
 import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
 import Date from '../elements/Date';
-import ICONS from '../elements/Button/Icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function Card({ sender, profileImageURL, relationship, content, createdAt }) {
+function MessagesCard({ sender, profileImageURL, relationship, content, createdAt }) {
   return (
     <Container>
       <Wrapper>
@@ -22,13 +21,15 @@ function Card({ sender, profileImageURL, relationship, content, createdAt }) {
         </Profile>
       </Wrapper>
       <Outlined />
-      <TextField>{content}</TextField>
+      <TextFeild>{content}</TextFeild>
       <DateContainer>
         <Date font="font12Regular" createdAt={createdAt} />
       </DateContainer>
     </Container>
   );
 }
+
+export default MessagesCard;
 
 const Container = styled.div`
   width: 38.4rem;
@@ -37,6 +38,8 @@ const Container = styled.div`
   box-shadow: ${boxShadow.card};
   display: flex;
   flex-direction: column;
+  background-color: ${color.white};
+  cursor: pointer;
 `;
 
 const Wrapper = styled.div`
@@ -65,7 +68,7 @@ const Outlined = styled.div`
   margin: 0 2.4rem;
 `;
 
-const TextField = styled.div`
+const TextFeild = styled.div`
   width: 33.6rem;
   height: 10.6rem;
   margin: auto 2.4rem;
@@ -78,5 +81,3 @@ const TextField = styled.div`
 const DateContainer = styled.div`
   margin: 1.6rem 27.6rem 2.4rem 2.4rem;
 `;
-
-export default Card;

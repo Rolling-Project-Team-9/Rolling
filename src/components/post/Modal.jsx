@@ -1,10 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
+import DESIGN_TOKEN from '../../styles/tokens';
 import Button from '../elements/Button/Button';
-import styles from '../../styles/tokens';
 import Badge from '../elements/Badge';
+import Date from '../elements/Date';
 
-const { color, layout, boxShadow, typography } = styles;
+const { color, layout, boxShadow, typography } = DESIGN_TOKEN;
+
+function Modal({ results }) {
+  return (
+    <div>
+      {results?.map((item) => (
+        <Container key={item.id}>
+          <Wrapper>
+            <ContentsProfile>
+              <img src={item.profileImageURL} alt="프로필 이미지" />
+              <p>From.</p>
+              <h1>{item.sender}</h1>
+              <Badge relationship={item.relationship}>{item.relationship}</Badge>
+            </ContentsProfile>
+            <DateContainer>
+              <Date font="font14Regular" createdAt={item.createdAt} />
+            </DateContainer>
+          </Wrapper>
+          <BlankDiv />
+          <ContentsMessage>{item.content}</ContentsMessage>
+          <ButtonWrapper>
+            <Button type="button" width="120" height="large" variant="primary">
+              확인
+            </Button>
+          </ButtonWrapper>
+        </Container>
+      ))}
+    </div>
+  );
+}
+
+export default Modal;
 
 const Container = styled.div`
   width: 60rem;
@@ -27,9 +59,6 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-
-const Gosegu =
-  'https://i.namu.wiki/i/-bbcIaMQWmX2tRIbd1DwoIy2gXNWZIePFA9hf1F4nK0pyFK4n0QzEG_OGIL8PrQjKcqIuxhmdWBMP3akFaD0qAMy9CuW9krBlDTTaOmefoaA4gEIRAfWMXpbRYv80P60TrAclekEMSy4hgkRgpC8Iw.webp';
 
 const ContentsProfile = styled.div`
   display: grid;
@@ -57,12 +86,7 @@ const ContentsProfile = styled.div`
   }
 `;
 
-const ContentsCreatedAt = styled.div`
-  p {
-    ${typography.font14Regular};
-    color: ${color.gray[400]};
-  }
-`;
+const DateContainer = styled.div``;
 
 const BlankDiv = styled.div`
   width: 52rem;
@@ -103,33 +127,3 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
-
-function Modal() {
-  const selectRelationship = '친구';
-  const sender = '고세구';
-  const createdDate = '2023.12.14';
-  const message =
-    '이파리들~ 하이빵가루~! 세구에요!! ^ㅁ^ 제가 처음으로 부른 노래가 1000만 조회수를 달성하다니... 진짜! 너무 놀랍고 신기하고 기뻐요!!! 헤헤 팬서비스를 들으면 오디션 초기당시가 생각나서 마음이 뭉클해져요! 오랜 기간 저 세구를 믿고 응원해주신 여러분들! 그리고 또 새로 만나게된 유입 이파리분들 !! 너무 감사드리고 앞으로의 여정도 많은 미래가 기다리고 있겠지만 그게 어떠한 미래이든 같이 나아가봐요! 나 혼자는 너무나도 약한 사람이지만 이파리들과 함께인 난 이 순간 세상에서 제일 강한 아이돌이다 !!!! 너무 든든하고 고마워요 ! 지금까지 그래왔듯 앞으로도 노래가사처럼 굳세고 열정있는 세구로 살아가고 싶어요 ㅎㅎ 과분한 사랑에 이를 다 보답해줄 팬서비스는 이 세상에 존재 할 수 없겠지만 늘 노력하고 더 성장하는 아이돌 고세구로 남아 용기를 잔뜩 드릴게요 !! 그럼... 마지막으로... 좋아하게 돼서 나를 바라봐줘 !!! >ㅁ< 약속이야 !!!! - 지금 이 순간 너무 행복한 세구가 -';
-  return (
-    <Container>
-      <Wrapper>
-        <ContentsProfile>
-          <img src={Gosegu} alt="세구" />
-          <p>From.</p>
-          <h1>{sender}</h1>
-          <Badge selectRelationship={selectRelationship}>{selectRelationship}</Badge>
-        </ContentsProfile>
-        <ContentsCreatedAt>{createdDate}</ContentsCreatedAt>
-      </Wrapper>
-      <BlankDiv />
-      <ContentsMessage>{message}</ContentsMessage>
-      <ButtonWrapper>
-        <Button type="button" width="120" height="large" variant="primary">
-          확인
-        </Button>
-      </ButtonWrapper>
-    </Container>
-  );
-}
-
-export default Modal;
