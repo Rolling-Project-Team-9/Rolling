@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { getApi, deleteRecipient } from '../api/Api';
+import { getRecipientMessages, getRecipient } from '../api/users';
+import { deleteRecipient } from '../api/delete';
+import useAsync from '../hooks/useAsync';
 import CardList from '../components/Edit/EditCardList';
 import HeaderService from '../components/HeaderService';
 import Button from '../components/elements/Button/Button';
@@ -10,9 +12,12 @@ import DESIGN_TOKEN from '../styles/tokens';
 const { typography } = DESIGN_TOKEN;
 
 function EditPage() {
+  const [isLoadingMessages, isErrorMessages, getRecipientMessageAsync] = useAsync(getRecipientMessages);
+  const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
   const [data, setData] = useState([]);
   const [bgData, setBgData] = useState([]);
   const { id } = useParams();
+  const { name, messageCount, recentMessages, topReactions } = bgData;
   const navigate = useNavigate();
 
   const ContentWrapper = styled.div`
@@ -36,12 +41,8 @@ function EditPage() {
 
   useEffect(() => {
     const handleHeaderServiceLoad = async (recipientId) => {
-      let result;
-      try {
-        result = await getApi('recipients/', `${recipientId}/`, 'messages/');
-      } catch (error) {
-        return;
-      }
+      const result = await getRecipientMessageAsync(recipientId);
+      if (!result) return;
       const recipientData = result;
       if (recipientData) {
         setData(recipientData);
@@ -49,12 +50,8 @@ function EditPage() {
     };
 
     const handlePostBackground = async (recipientId) => {
-      let result;
-      try {
-        result = await getApi('recipients/', `${recipientId}/`);
-      } catch (error) {
-        return;
-      }
+      const result = await getRecipientAsync(recipientId);
+      if (!result) return;
       const recipientData = result;
       if (recipientData) {
         setBgData(recipientData);
@@ -63,7 +60,7 @@ function EditPage() {
 
     handleHeaderServiceLoad(id);
     handlePostBackground(id);
-  }, [id]);
+  }, [id, getRecipientMessageAsync, getRecipientAsync]);
   const { results } = data;
   const bgImg = bgData.backgroundImageURL;
 
@@ -74,7 +71,13 @@ function EditPage() {
 
   return (
     <div>
-      <HeaderService $id={id} />
+      <HeaderService
+        name={name}
+        messageCount={messageCount}
+        recentMessages={recentMessages}
+        topReactions={topReactions}
+        id={id}
+      />
       <Container $bgImg={bgImg}>
         <ContentWrapper>
           <ButtonWrapper>
@@ -83,7 +86,7 @@ function EditPage() {
             </Button>
           </ButtonWrapper>
         </ContentWrapper>
-        <CardList results={results} />
+        <CardList results={data && results} />
       </Container>
     </div>
   );

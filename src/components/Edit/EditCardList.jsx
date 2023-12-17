@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import EditCard from './EditCard';
-import { deleteMessage } from '../../api/Api';
+import { deleteMessage } from '../../api/delete';
 
 function CardList({ results }) {
   const [cards, setCards] = useState(results);
 
   const handleDeleteMessage = async (id) => {
     await deleteMessage(id);
-    const updatedCards = cards.filter((card) => card.id !== id);
-    setCards(updatedCards);
+    setCards((prevCards) => prevCards.filter((card) => card.id !== id));
   };
+
+  useEffect(() => {
+    setCards(results);
+  }, [results]);
+
   return (
     <Container>
       {cards?.map((item) => (
@@ -27,7 +31,6 @@ function CardList({ results }) {
     </Container>
   );
 }
-export default CardList;
 
 const Container = styled.div`
   display: grid;
@@ -37,3 +40,5 @@ const Container = styled.div`
   width: 120rem;
   margin: 0 auto;
 `;
+
+export default CardList;

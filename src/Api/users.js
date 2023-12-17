@@ -1,4 +1,4 @@
-import { getApi, ENDPOINT } from './api';
+import { getApi, ENDPOINT } from './Api';
 
 const { RECIPIENTS, MESSAGES, REACTIONS, PROFILE_IMAGE, BACKGROUND_IMAGE } = ENDPOINT;
 

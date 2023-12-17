@@ -5,7 +5,7 @@ import Avatar from '../elements/Avatar';
 import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
 import Date from '../elements/Date';
-import ICONS from '../elements/Button/icons';
+import ICONS from '../elements/Button/Icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 

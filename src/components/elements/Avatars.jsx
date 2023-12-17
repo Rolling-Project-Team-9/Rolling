@@ -42,7 +42,7 @@ function Avatars({ left, recentMessages, messageCount }) {
     <AvatarsDiv $left={left}>
       {recentMessages?.map((item, index) => (
         <AvatarDiv key={item.id} $zIndex={index} order={index}>
-          <Avatar size="small" profileImageURL={item.profileImageURL} />
+          <Avatar size="small" $avatarImgSrc={item.profileImageURL} />
         </AvatarDiv>
       ))}
       {/* eslint-disable-next-line */}
