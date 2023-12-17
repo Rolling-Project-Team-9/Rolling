@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PostCardList from '../components/list/PostCardList';
 import { getRecipientList } from '../api/users';
 import useAsync from '../hooks/useAsync';
@@ -13,8 +13,6 @@ function ListPage() {
   const [isLoading, isError, getRecipientListAsync] = useAsync(getRecipientList);
   const [latestPostList, setLatestPostList] = useState([]);
   const [hotPostList, setHotPostList] = useState([]);
-  const navigate = useNavigate();
-  const onClick = () => navigate('/post');
 
   useEffect(() => {
     const getLatestPostList = async () => {
@@ -39,11 +37,13 @@ function ListPage() {
         <PostTitle>최근에 만든 롤링 페이퍼 ⭐️️</PostTitle>
         <PostCardList postList={latestPostList} />
       </PostContainer>
-      <ButtonDiv>
-        <Button variant="primary" height="x-large" onClick={onClick}>
-          나도 만들어 보기
-        </Button>
-      </ButtonDiv>
+      <Link to="/post">
+        <ButtonDiv>
+          <Button variant="primary" height="x-large">
+            나도 만들어 보기
+          </Button>
+        </ButtonDiv>
+      </Link>
     </PageContainer>
   );
 }
