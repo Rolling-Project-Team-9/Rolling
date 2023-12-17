@@ -44,12 +44,23 @@ export const putApi = async (putData, endPoint = ENDPOINT.RECIPIENTS) => {
 };
 
 export const deleteApi = async (endPoint = ENDPOINT.RECIPIENTS) => {
-  const response = await fetch(`${TEAM_API_URL}/${endPoint}`, { method: 'DELETE' });
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+  try {
+    const response = await fetch(`${TEAM_API_URL}/${endPoint}`, { method: 'DELETE' });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const body = await response.text();
+
+    if (body) {
+      return JSON.parse(body);
+    }
+
+    return null;
+  } catch (error) {
+    console.error('Error deleting data:', error);
+    throw error;
   }
-  const body = await response.json();
-  return body;
 };
 
 export const pathApi = async (updateData, endPoint = ENDPOINT.MESSAGES) => {

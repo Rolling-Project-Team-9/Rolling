@@ -5,7 +5,7 @@ import Avatars from './elements/Avatars';
 import MessageCounter from './elements/MessageCounter';
 import Emoji from './elements/Emoji';
 import Button from './elements/Button/Button';
-import Icons from './elements/Button/icons';
+import Icons from './elements/Button/Icons';
 import RecipientName from './elements/RecipientName';
 import { getReactions } from '../api/users';
 import useAsync from '../hooks/useAsync';
