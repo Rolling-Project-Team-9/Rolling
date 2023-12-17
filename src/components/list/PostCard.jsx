@@ -12,13 +12,11 @@ import Emoji from '../elements/Emoji';
 
 const { color, boxShadow, overlayBackDropColor } = DESIGN_TOKEN;
 
-function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions }) {
-  const onClick = (e) => {};
-
+function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions, onClick }) {
   return (
     <CardContainer $backgroundColor={backgroundColor} $backgroundImgUrl={backgroundImgUrl} onClick={onClick}>
       {backgroundImgUrl && <CardOverlay />}
-      <CardWrapper onClick={onClick}>
+      <CardWrapper>
         {backgroundImgUrl ? (
           <SenderContainer $fontColor="white">
             <RecipientName font="font24Bold" name={name} />
@@ -41,6 +39,7 @@ function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMes
 }
 
 const CardContainer = styled.div`
+  z-index: 0;
   cursor: pointer;
   position: relative;
   width: 27.5rem;
@@ -92,6 +91,7 @@ const CardContainer = styled.div`
 `;
 
 const CardOverlay = styled.div`
+  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;

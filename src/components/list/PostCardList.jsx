@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import PostCard from './PostCard';
 
 function PostCardList({ postList }) {
+  const navigate = useNavigate();
+  const handleClick = (key) => {
+    navigate(`/post/${key}/`);
+  };
   return (
     <Container>
       {postList ? (
@@ -15,6 +20,7 @@ function PostCardList({ postList }) {
             messageCount={item?.messageCount}
             recentMessages={item?.recentMessages}
             topReactions={item?.topReactions}
+            onClick={() => handleClick(item?.id)}
           />
         ))
       ) : (
@@ -26,9 +32,10 @@ function PostCardList({ postList }) {
 
 const Container = styled.div`
   display: inline-flex;
-  width: 116rem;
+  position: relative;
+  width: 119rem;
+  right: 2rem;
   padding: 2rem;
-  padding-left: 0;
   overflow: hidden;
   gap: 2rem;
 `;

@@ -22,7 +22,7 @@ function ListPage() {
       setLatestPostList(results);
     };
     const getHotPostList = async () => {
-      const { results } = await getApi('recipients/', '?sort=like');
+      const { results } = await getRecipientListAsync('like');
       setHotPostList(results);
     };
     getHotPostList();
@@ -67,6 +67,7 @@ const PostTitle = styled.div`
 `;
 
 const ButtonDiv = styled.div`
+  z-index: 1;
   display: flex;
   width: 28rem;
   position: sticky;
