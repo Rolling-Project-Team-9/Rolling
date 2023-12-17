@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import introducePoint1 from '../../assets/images/cardBundle.png';
 import introducePoint2 from '../../assets/images/emojiBundle.png';
 import PointCard from './PointCard';
@@ -29,9 +30,11 @@ function Feature() {
     <Container>
       <PointCard content={content1} />
       <PointCard content={content2} $isReverse />
-      <Button type="button" width="280" height="x-large" variant="primary">
-        구경해보기
-      </Button>
+      <Link to="/list">
+        <Button type="button" width="280" height="x-large" variant="primary">
+          구경해보기
+        </Button>
+      </Link>
     </Container>
   );
 }
