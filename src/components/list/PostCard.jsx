@@ -12,8 +12,36 @@ import Emoji from '../elements/Emoji';
 
 const { color, boxShadow, overlayBackDropColor } = DESIGN_TOKEN;
 
+function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions }) {
+  const onClick = (e) => {};
+
+  return (
+    <CardContainer $backgroundColor={backgroundColor} $backgroundImgUrl={backgroundImgUrl} onClick={onClick}>
+      {backgroundImgUrl && <CardOverlay />}
+      <CardWrapper onClick={onClick}>
+        {backgroundImgUrl ? (
+          <SenderContainer $fontColor="white">
+            <RecipientName font="font24Bold" name={name} />
+            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
+            <MessageCounter font="font16Regular" messageCount={messageCount} />
+          </SenderContainer>
+        ) : (
+          <SenderContainer>
+            <RecipientName colorNum="900" font="font24Bold" name={name} />
+            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
+            <MessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
+          </SenderContainer>
+        )}
+        <EmojiContainer>
+          <Emoji reactions={topReactions} />
+        </EmojiContainer>
+      </CardWrapper>
+    </CardContainer>
+  );
+}
+
 const CardContainer = styled.div`
-  z-index: -2;
+  cursor: pointer;
   position: relative;
   width: 27.5rem;
   height: 26rem;
@@ -64,7 +92,6 @@ const CardContainer = styled.div`
 `;
 
 const CardOverlay = styled.div`
-  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
@@ -99,31 +126,5 @@ const EmojiContainer = styled.div`
   align-items: flex-start;
   gap: 0.8rem;
 `;
-
-function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions }) {
-  return (
-    <CardContainer $backgroundColor={backgroundColor} $backgroundImgUrl={backgroundImgUrl}>
-      {backgroundImgUrl && <CardOverlay />}
-      <CardWrapper>
-        {backgroundImgUrl ? (
-          <SenderContainer $fontColor="white">
-            <RecipientName font="font24Bold" name={name} />
-            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
-            <MessageCounter font="font16Regular" messageCount={messageCount} />
-          </SenderContainer>
-        ) : (
-          <SenderContainer>
-            <RecipientName colorNum="900" font="font24Bold" name={name} />
-            <Avatars recentMessages={recentMessages} messageCount={messageCount} />
-            <MessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
-          </SenderContainer>
-        )}
-        <EmojiContainer>
-          <Emoji reactions={topReactions} />
-        </EmojiContainer>
-      </CardWrapper>
-    </CardContainer>
-  );
-}
 
 export default Card;
