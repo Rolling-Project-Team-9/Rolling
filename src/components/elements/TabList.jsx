@@ -14,7 +14,7 @@ const Container = styled.ul`
   background-color: ${color.gray[100]};
 `;
 
-const Item = styled.li`
+const Tab = styled.li`
   flex: 1 1 0;
   button {
     &.active {
@@ -43,13 +43,13 @@ function TabList({ width, onClick }) {
   };
 
   return (
-    <Container width={width} onClick={onClick}>
+    <Container width={width} onClick={onClick} role="tablist">
       {TABS.map((item, index) => (
-        <Item key={item.text} onClick={() => activeTabHandlder(index)}>
+        <Tab key={item.text} onClick={() => activeTabHandlder(index)} role="tab">
           <Button type="button" className={isActiveIndex === index ? 'active' : ''}>
             {item.text}
           </Button>
-        </Item>
+        </Tab>
       ))}
     </Container>
   );
