@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `;
 
 function RecipientName({ colorNum, font, name }) {
-  const recipientName = `To. ${name} `;
+  const recipientName = `To. ${name || ''} `;
   return (
     <Wrapper $font={font} $colorNum={colorNum}>
       {recipientName}

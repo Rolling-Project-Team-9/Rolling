@@ -2,27 +2,24 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../styles/tokens';
 import Avatars from './elements/Avatars';
-import SendersCounter from './elements/MessageCounter';
+import MessageCounter from './elements/MessageCounter';
 import Emoji from './elements/Emoji';
 import Button from './elements/Button/Button';
 import Icons from './elements/Button/icons';
 import RecipientName from './elements/RecipientName';
-import { getApi } from '../api/api';
+import { getReactions } from '../api/users';
+import useAsync from '../hooks/useAsync';
 
-const { color, boxShadow } = DESIGN_TOKEN;
 const { add, share, arrow } = Icons;
 
-function HeaderService() {
+function HeaderService({ name, messageCount, recentMessages, topReactions, id }) {
+  const [isLoading, isError, getReactionsAsync] = useAsync(getReactions);
   const [disabled, setDisabled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [data, setData] = useState([]);
   const [reactions, setReactions] = useState([]);
-  const [id, setId] = useState(936);
-  const { name, messageCount, recentMessages, topReactions } = data;
-  const { results } = reactions;
 
   const handleArrowButtonClick = () => {
-    if (!isOpen) {
+    if (!isOpen && reactions.length !== 0) {
       setIsOpen(true);
       return;
     }
@@ -31,34 +28,15 @@ function HeaderService() {
   const handleAddReactionClick = () => {};
 
   useEffect(() => {
-    const handleHeaderServiceLoad = async (recipientId) => {
-      let result;
-      try {
-        result = await getApi('recipients/', `${recipientId}/`);
-      } catch (error) {
-        return;
-      }
-      const recipientData = result;
-      if (recipientData) {
-        setData(recipientData);
-      }
-    };
     const handleReactionsLoad = async (recipientId) => {
-      let result;
-      try {
-        result = await getApi('recipients/', `${recipientId}/`, 'reactions/');
-      } catch (error) {
-        return;
-      }
-      const reactionData = result;
-      if (reactionData) {
-        setReactions(reactionData);
-      }
+      const reactionData = await getReactionsAsync(recipientId);
+      if (!reactionData) return;
+      const { results } = reactionData;
+      setReactions(results);
     };
 
-    handleHeaderServiceLoad(id);
     handleReactionsLoad(id);
-  }, [id]);
+  }, [id, getReactionsAsync]);
 
   return (
     <>
@@ -66,8 +44,8 @@ function HeaderService() {
         <RecipientName font="font28Bold" name={name} />
         <Wrapper>
           <Senders>
-            <Avatars left="28" recentMessages={recentMessages} sendersCount={messageCount} />
-            <SendersCounter font="font18Regular" sendersCount={messageCount} />
+            <Avatars left="28" recentMessages={recentMessages} messageCount={messageCount} />
+            <MessageCounter font="font18Regular" messageCount={messageCount} />
             <ColumnDivider />
           </Senders>
           <Reactions>
@@ -77,7 +55,7 @@ function HeaderService() {
             <Button width="36" height="medium" icon={arrow.down} onClick={handleArrowButtonClick} />
             {isOpen && (
               <EmojiExpanded>
-                <Emoji reactions={results} />
+                <Emoji reactions={reactions} />
               </EmojiExpanded>
             )}
           </Reactions>
@@ -101,6 +79,8 @@ function HeaderService() {
 }
 
 export default HeaderService;
+
+const { color, boxShadow } = DESIGN_TOKEN;
 
 const Container = styled.div`
   display: flex;

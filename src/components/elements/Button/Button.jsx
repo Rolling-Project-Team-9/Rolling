@@ -112,8 +112,8 @@ const Container = styled.button`
   ${({ height }) => css`
     ${HEIGHT_STYLE[height]}
   `};
-  ${({ variant }) => css`
-    ${VARIANT_STYLE[variant]}
+  ${({ $variant }) => css`
+    ${VARIANT_STYLE[$variant]}
   `};
 
   transition: background-color 0.2s ease;
@@ -140,7 +140,7 @@ const Icon = styled.img`
 
 function Button({ children, variant, width, height, disabled, icon, onClick }) {
   return (
-    <Container variant={variant} width={width} height={height} icon={icon} onClick={onClick} disabled={disabled}>
+    <Container $variant={variant} width={width} height={height} icon={icon} onClick={onClick} disabled={disabled}>
       {icon && <Icon src={icon.src} alt={icon.alt} height={height} disabled={disabled} />}
       {children}
     </Container>
