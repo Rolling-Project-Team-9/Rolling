@@ -1,6 +1,6 @@
 import React from 'react';
 import { css, styled } from 'styled-components';
-import DESIGN_TOKEN from '../../../styles/tokens';
+import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 

@@ -5,7 +5,7 @@ import introducePoint1 from '../../assets/images/cardBundle.png';
 import introducePoint2 from '../../assets/images/emojiBundle.png';
 import PointCard from './PointCard';
 import styles from '../../styles/tokens';
-import Button from '../elements/Button/Button';
+import Button from '../elements/Button';
 
 const { layout } = styles;
 

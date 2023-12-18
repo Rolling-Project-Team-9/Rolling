@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
-import Button from './elements/Button/Button';
+import Button from './elements/Button';
 
 const LogoIcon = styled.img`
   width: 107px;
