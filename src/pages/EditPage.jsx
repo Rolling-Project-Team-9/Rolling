@@ -6,7 +6,7 @@ import { deleteRecipient } from '../api/delete';
 import useAsync from '../hooks/useAsync';
 import CardList from '../components/Edit/EditCardList';
 import HeaderService from '../components/HeaderService';
-import Button from '../components/elements/Button/Button';
+import Button from '../components/elements/Button';
 import DESIGN_TOKEN from '../styles/tokens';
 
 const { typography } = DESIGN_TOKEN;
