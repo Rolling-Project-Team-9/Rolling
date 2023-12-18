@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ICONS from '../elements/Button/Icons';
 import PostCard from './PostCard';
+import DESIGN_TOKEN from '../../styles/tokens';
 
 const { left, right } = ICONS.arrow;
+const { layout } = DESIGN_TOKEN;
 
 function PostCardList({ postList }) {
   const [cardScroll, setCardScroll] = useState(0);
   const [isLastCard, setIsLastCard] = useState(false);
 
   const count = postList.length;
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+    if (width === 1024 || width === 768) setCardScroll(0);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
 
   const navigate = useNavigate();
   const handleCardClick = (key) => {
@@ -73,7 +89,6 @@ const Container = styled.div`
 const Wrapper = styled.div`
   position: relative;
   display: flex;
-
   width: 118rem;
   right: 6rem;
   padding: 2rem;
@@ -87,7 +102,14 @@ const CardContainer = styled.div`
   display: flex;
   gap: 2rem;
 
-  transition: transform 0.3s;
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const Button = styled.button`
@@ -105,6 +127,9 @@ const Button = styled.button`
   height: 4rem;
   flex-shrink: 0;
   backdrop-filter: blur(2px);
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    display: none;
+  }
 `;
 
 const LeftButton = styled(Button)`
@@ -112,7 +137,7 @@ const LeftButton = styled(Button)`
 `;
 
 const RightButton = styled(Button)`
-  right: 8rem;
+  right: 2rem;
 `;
 
 export default PostCardList;

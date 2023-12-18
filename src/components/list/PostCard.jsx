@@ -10,9 +10,9 @@ import MessageCounter from '../elements/MessageCounter';
 import RecipientName from '../elements/RecipientName';
 import Emoji from '../elements/Emoji';
 
-const { color, boxShadow, overlayBackDropColor } = DESIGN_TOKEN;
+const { color, boxShadow, overlayBackDropColor, layout } = DESIGN_TOKEN;
 
-function Card({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions, onClick }) {
+function PostCard({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions, onClick }) {
   return (
     <CardContainer $backgroundColor={backgroundColor} $backgroundImgUrl={backgroundImgUrl} onClick={onClick}>
       {backgroundImgUrl && <CardOverlay />}
@@ -88,6 +88,12 @@ const CardContainer = styled.div`
       background-repeat: no-repeat
     `;
   }};
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    width: 20.8rem;
+    height: 23.2rem;
+    padding-right: 2.2rem;
+  }
 `;
 
 const CardOverlay = styled.div`
@@ -96,8 +102,8 @@ const CardOverlay = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   border-radius: 1.6rem;
-  height: 26rem;
   flex-shrink: 0;
   background: ${overlayBackDropColor.card};
 `;
@@ -107,6 +113,10 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4.3rem;
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    gap: 3.3rem;
+  }
 `;
 
 const SenderContainer = styled.div`
@@ -125,6 +135,11 @@ const EmojiContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   gap: 0.8rem;
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    width: 16.2rem;
+    gap: 0.4rem;
+  }
 `;
 
-export default Card;
+export default PostCard;
