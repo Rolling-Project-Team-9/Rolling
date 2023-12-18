@@ -40,6 +40,7 @@ function PostPage() {
     handlePostBackground(id);
   }, [id, getRecipientMessageAsync, getRecipientAsync]);
   const { results } = data;
+  const bgColor = bgData.backgroundColor;
   const bgImg = bgData.backgroundImageURL;
 
   return (
@@ -51,7 +52,7 @@ function PostPage() {
         topReactions={topReactions}
         id={id}
       />
-      <Wrapper $bgImg={bgImg}>
+      <Wrapper $bgImg={bgImg} $bgColor={bgColor}>
         <MessageCardList results={data && results} />
       </Wrapper>
     </div>
@@ -62,7 +63,16 @@ export default PostPage;
 
 const Wrapper = styled.div`
   width: 100%;
-  background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
+  height: 100%;
+  background: ${(props) => {
+    if (props.$bgImg) {
+      return `url(${props.$bgImg})`;
+    }
+    if (props.$bgColor) {
+      return color[props.$bgColor][200];
+    }
+    return color.white;
+  }};
   background-repeat: no-repeat;
   background-size: cover;
 `;
