@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { getMessage } from '../../api/users';
+import useAsync from '../../hooks/useAsync';
 import DESIGN_TOKEN from '../../styles/tokens';
 import Button from '../elements/Button/Button';
 import Badge from '../elements/Badge';
@@ -7,40 +9,71 @@ import Date from '../elements/Date';
 
 const { color, layout, boxShadow, typography } = DESIGN_TOKEN;
 
-function Modal({ results }) {
+function Modal({ messageId, onClick }) {
+  const [isLoadingMessage, isErrorMessage, getMessageAsync] = useAsync(getMessage);
+  const [modalData, setModalData] = useState([]);
+
+  useEffect(() => {
+    const handleLoadModal = async (id) => {
+      const result = await getMessageAsync(id);
+      if (!result) return;
+      const data = result;
+      if (data) {
+        setModalData(data);
+      }
+    };
+
+    handleLoadModal(messageId);
+  }, [messageId, getMessageAsync]);
+
   return (
-    <div>
-      {results?.map((item) => (
-        <Container key={item.id}>
+    <ModalBlur>
+      <div>
+        <Container>
           <Wrapper>
             <ContentsProfile>
-              <img src={item.profileImageURL} alt="프로필 이미지" />
+              <img src={modalData.profileImageURL} alt="프로필 이미지" />
               <p>From.</p>
-              <h1>{item.sender}</h1>
-              <Badge relationship={item.relationship}>{item.relationship}</Badge>
+              <h1>{modalData.sender}</h1>
+              <Badge relationship={modalData.relationship}>{modalData.relationship}</Badge>
             </ContentsProfile>
             <DateContainer>
-              <Date font="font14Regular" createdAt={item.createdAt} />
+              <Date font="font14Regular" createdAt={modalData.createdAt} />
             </DateContainer>
           </Wrapper>
           <BlankDiv />
-          <ContentsMessage>{item.content}</ContentsMessage>
+          <ContentsMessage>{modalData.content}</ContentsMessage>
           <ButtonWrapper>
-            <Button type="button" width="120" height="large" variant="primary">
+            <Button type="button" width="120" height="large" variant="primary" onClick={onClick}>
               확인
             </Button>
           </ButtonWrapper>
         </Container>
-      ))}
-    </div>
+      </div>
+    </ModalBlur>
   );
 }
 
 export default Modal;
 
+const ModalBlur = styled.div`
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  ${layout.zIndex.overlay};
+`;
+
 const Container = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 60rem;
-  height: 48rem;
+  height: 47.6rem;
   padding: 4rem;
   border-radius: 1.6rem;
   box-shadow: ${boxShadow.card};
@@ -48,6 +81,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${layout.zIndex.modal};
 
   @media (max-width: ${layout.breakpoint.mobile}) {
     width: 36rem;
@@ -76,7 +110,7 @@ const ContentsProfile = styled.div`
 
   p {
     grid-area: from;
-    ${typography.font20Bold};
+    ${typography.font20Regular};
   }
 
   h1 {

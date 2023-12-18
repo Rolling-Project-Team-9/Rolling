@@ -8,14 +8,17 @@ function MessageCardList({ results }) {
     <Container>
       <AddCard />
       {results?.map((item) => (
-        <MessagesCard
-          key={item.id}
-          sender={item.sender}
-          profileImageURL={item.profileImageURL}
-          relationship={item.relationship}
-          content={item.content}
-          createdAt={item.createdAt}
-        />
+        <div>
+          <MessagesCard
+            key={item.id}
+            messageId={item.id}
+            sender={item.sender}
+            profileImageURL={item.profileImageURL}
+            relationship={item.relationship}
+            content={item.content}
+            createdAt={item.createdAt}
+          />
+        </div>
       ))}
     </Container>
   );

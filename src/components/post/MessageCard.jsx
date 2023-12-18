@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 import Avatar from '../elements/Avatar';
 import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
 import Date from '../elements/Date';
+import Modal from './Modal';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function MessagesCard({ sender, profileImageURL, relationship, content, createdAt }) {
+function MessagesCard({ sender, profileImageURL, relationship, content, createdAt, messageId }) {
+  const [modal, setModal] = useState(false);
+
+  const handleCardClick = () => {
+    setModal(true);
+  };
+  const handleCloseModal = () => {
+    setModal(false);
+  };
+
   return (
-    <Container>
-      <Wrapper>
-        <Profile>
-          <Avatar $avatarImgSrc={profileImageURL} />
-          <SenderProfile>
-            <SenderName name={sender} />
-            <Badge relationship={relationship} />
-          </SenderProfile>
-        </Profile>
-      </Wrapper>
-      <Outlined />
-      <TextFeild>{content}</TextFeild>
-      <DateContainer>
-        <Date font="font12Regular" createdAt={createdAt} />
-      </DateContainer>
-    </Container>
+    <div>
+      <Container onClick={handleCardClick}>
+        <Wrapper>
+          <Profile>
+            <Avatar $avatarImgSrc={profileImageURL} />
+            <SenderProfile>
+              <SenderName name={sender} />
+              <Badge relationship={relationship} />
+            </SenderProfile>
+          </Profile>
+        </Wrapper>
+        <Outlined />
+        <TextFeild>{content}</TextFeild>
+        <DateContainer>
+          <Date font="font12Regular" createdAt={createdAt} />
+        </DateContainer>
+      </Container>
+      {modal && <Modal messageId={messageId} onClick={handleCloseModal} />}
+    </div>
   );
 }
 
@@ -70,12 +83,13 @@ const Outlined = styled.div`
 
 const TextFeild = styled.div`
   width: 33.6rem;
-  height: 10.6rem;
+  height: 10rem;
   margin: auto 2.4rem;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+
 `;
 
 const DateContainer = styled.div`

@@ -4,18 +4,28 @@ import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
-function SenderName({ colorNum, font, name }) {
-  const senderName = `From. ${name} `;
+function SenderName({ name }) {
   return (
-    <Wrapper font={font} colorNum={colorNum}>
-      {senderName}
+    <Wrapper>
+      <p>From.</p>
+      <h1>{name}</h1>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
   color: ${color.black};
-  ${({ font }) => font && typography[font]}
+  display: flex;
+  align-items: flex-end;
+
+  p {
+    ${typography.font18Regular};
+  }
+
+  h1 {
+    margin-left: 0.6rem;
+    ${typography.font18Bold};
+  }
 `;
 
 export default SenderName;
