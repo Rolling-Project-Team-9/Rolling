@@ -95,8 +95,8 @@ const CardOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
   border-radius: 1.6rem;
-  width: 27.5rem;
   height: 26rem;
   flex-shrink: 0;
   background: ${overlayBackDropColor.card};
