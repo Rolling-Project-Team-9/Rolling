@@ -93,6 +93,7 @@ const Container = styled.div`
   margin: 0 auto;
   padding-top: 1.3rem;
   padding-bottom: 1.3rem;
+  background-color: ${color.white};
 `;
 const Wrapper = styled.div`
   display: flex;

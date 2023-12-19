@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { getRecipient, getRecipientList } from '../api/users';
+import { getRecipientMessages, getRecipient, getMessage } from '../api/users';
 import useAsync from '../hooks/useAsync';
-import CardList from '../components/card/CardList';
+import DESIGN_TOKEN from '../styles/tokens';
+import MessageCardList from '../components/post/MessageCardList';
 import HeaderService from '../components/HeaderService';
 
+const { color } = DESIGN_TOKEN;
+
 function PostPage() {
-  const [isLoading, isError, getRecipientAsync] = useAsync(getRecipient);
+  const [isLoadingMessages, isErrorMessages, getRecipientMessageAsync] = useAsync(getRecipientMessages);
+  const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
   const [data, setData] = useState([]);
+  const [bgData, setBgData] = useState([]);
   const { id } = useParams();
-  const { name, messageCount, recentMessages, topReactions } = data;
+  const { name, messageCount, recentMessages, topReactions } = bgData;
 
   useEffect(() => {
-    const handleHeaderServiceLoad = async (recipientId) => {
-      const result = await getRecipientAsync(recipientId);
+    const handlePostInfo = async (recipientId) => {
+      const result = await getRecipientMessageAsync(recipientId);
       if (!result) return;
       const recipientData = result;
       if (recipientData) {
@@ -21,8 +27,21 @@ function PostPage() {
       }
     };
 
-    handleHeaderServiceLoad(id);
-  }, [id, getRecipientAsync]);
+    const handlePostBackground = async (recipientId) => {
+      const result = await getRecipientAsync(recipientId);
+      if (!result) return;
+      const recipientData = result;
+      if (recipientData) {
+        setBgData(recipientData);
+      }
+    };
+
+    handlePostInfo(id);
+    handlePostBackground(id);
+  }, [id, getRecipientMessageAsync, getRecipientAsync]);
+  const { results } = data;
+  const bgColor = bgData.backgroundColor;
+  const bgImg = bgData.backgroundImageURL;
 
   return (
     <div>
@@ -33,9 +52,27 @@ function PostPage() {
         topReactions={topReactions}
         id={id}
       />
-      <CardList recentMessages={recentMessages} />
+      <Wrapper $bgImg={bgImg} $bgColor={bgColor}>
+        <MessageCardList results={data && results} />
+      </Wrapper>
     </div>
   );
 }
 
 export default PostPage;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${(props) => {
+    if (props.$bgImg) {
+      return `url(${props.$bgImg})`;
+    }
+    if (props.$bgColor) {
+      return color[props.$bgColor][200];
+    }
+    return color.white;
+  }};
+  background-repeat: no-repeat;
+  background-size: cover;
+`;

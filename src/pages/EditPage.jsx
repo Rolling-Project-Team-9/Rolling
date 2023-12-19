@@ -20,25 +20,6 @@ function EditPage() {
   const { name, messageCount, recentMessages, topReactions } = bgData;
   const navigate = useNavigate();
 
-  const ContentWrapper = styled.div`
-    width: 120rem;
-    margin: 0 auto;
-    padding-top: 6.3rem;
-  `;
-
-  const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 1.1rem;
-    ${typography.font16Regular};
-  `;
-
-  const Container = styled.div`
-    width: 192rem;
-    height: 108rem;
-    background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
-  `;
-
   useEffect(() => {
     const handleHeaderServiceLoad = async (recipientId) => {
       const result = await getRecipientMessageAsync(recipientId);
@@ -93,3 +74,24 @@ function EditPage() {
 }
 
 export default EditPage;
+
+const ContentWrapper = styled.div`
+  width: 120rem;
+  margin: 0 auto;
+  padding-top: 6.3rem;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.1rem;
+  ${typography.font16Regular};
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
