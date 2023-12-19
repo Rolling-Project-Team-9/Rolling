@@ -22,6 +22,9 @@ export const getApi = async (endPoint = ENDPOINT.RECIPIENTS, sort = '') => {
 export const postApi = async (postData, endPoint = ENDPOINT.RECIPIENTS) => {
   const response = await fetch(`${TEAM_API_URL}/${endPoint}`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(postData),
   });
   if (!response.ok) {

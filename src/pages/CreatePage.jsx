@@ -1,9 +1,11 @@
 import React, { styled, css } from 'styled-components';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/elements/Button';
 import checkIcon from '../assets/icons/check.svg';
 import DESIGN_TOKEN from '../styles/tokens';
+import { createRecipient } from '../api/posts';
+import useAsync from '../hooks/useAsync';
 
 const { color, typography, layout } = DESIGN_TOKEN;
 const COLOR_VALUES = ['beige', 'green', 'purple', 'blue'];
@@ -13,13 +15,15 @@ const IMAGE_VALUES = [
   'https://ymkimstorage.s3.ap-northeast-2.amazonaws.com/optionImage3.png',
   'https://ymkimstorage.s3.ap-northeast-2.amazonaws.com/optionImage4.png',
 ];
-
 const VARIANT_STYLE = {
   color: css`
-    background: ${({ value }) => COLOR_VALUES[value] && color[COLOR_VALUES[value]][200]};
+    background: ${({ value }) => value && color[value][200]};
+    &:hover {
+      border: 3px solid ${({ value }) => color[value][300]};
+    }
   `,
   image: css`
-    background: ${({ value }) => `url('${value}')`};
+    background-image: ${({ value }) => `url('${value}')`};
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -27,9 +31,11 @@ const VARIANT_STYLE = {
 };
 
 function CreatePage() {
+  const [isLoading, isError, createRecipientAsync] = useAsync(createRecipient);
+  const [disabled, setDisabled] = useState(false);
   const navigate = useNavigate();
   const nameInput = useRef();
-  const [errorMessage, setErrorMessage] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [values, setValues] = useState({
     name: '',
     backgroundColor: 'beige',
@@ -49,22 +55,28 @@ function CreatePage() {
   };
 
   const handleChangeValues = (e) => {
+    console.log('change values', e.target.value);
     setValues((prevValues) => ({
       ...prevValues,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     }));
     setErrorMessage(false);
+    setDisabled(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     if (values.name.length < 1) {
       nameInput.current.focus();
       setErrorMessage(true);
+      setDisabled(true);
       return;
     }
-    /* eslint-disable no-alert */
-    alert('생성완료');
-    navigate('/post/{id}');
+
+    createRecipientAsync(values).then(({ id }) => {
+      navigate(`/post/${id}`);
+    });
   };
 
   const TABS = [
@@ -73,18 +85,17 @@ function CreatePage() {
       content: (
         <InputRadioGroup>
           {COLOR_VALUES.map((colors, index) => (
-            <InputLabel htmlFor={`optionColor-${index}`} value={colors} key={colors} variant="color">
+            <InputLabel htmlFor={`optionColor-${index}`} key={colors} value={colors} variant="color">
               <InputRadio
                 type="radio"
                 id={`optionColor-${index}`}
                 name="backgroundColor"
-                value={values.backgroundColor}
+                value={colors}
                 onChange={handleChangeValues}
                 defaultChecked={index === 0}
               />
             </InputLabel>
           ))}
-          컬러
         </InputRadioGroup>
       ),
     },
@@ -93,18 +104,17 @@ function CreatePage() {
       content: (
         <InputRadioGroup>
           {IMAGE_VALUES.map((image, index) => (
-            <InputLabel htmlFor={`optionImage-${index}`} key={image} variant="image">
+            <InputLabel htmlFor={`optionImage-${index}`} key={image} value={image} variant="image">
               <InputRadio
                 type="radio"
                 id={`optionImage-${index}`}
                 name="backgroundImage"
-                value={values.backgroundImage}
+                value={image}
                 onChange={handleChangeValues}
                 defaultChecked={index === 0}
               />
             </InputLabel>
           ))}
-          이미지
         </InputRadioGroup>
       ),
     },
@@ -145,7 +155,7 @@ function CreatePage() {
           ))}
         </TabList>
         <TabPanel role="tabpanel">{TABS[activeTab].content}</TabPanel>
-        <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit}>
+        <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={disabled}>
           생성하기
         </Button>
       </form>
@@ -235,6 +245,7 @@ const TabButton = styled.button`
 
 const TabPanel = styled.div`
   margin-bottom: 6.9rem;
+  overflow-y: scroll;
 `;
 
 const InputRadioGroup = styled.div`
@@ -282,4 +293,5 @@ const InputRadio = styled.input`
     background: ${color.gray[500]} url('${checkIcon}') no-repeat center/ 2.4rem 2.4rem;
   }
 `;
+
 export default CreatePage;
