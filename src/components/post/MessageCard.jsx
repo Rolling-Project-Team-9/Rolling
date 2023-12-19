@@ -4,6 +4,7 @@ import DESIGN_TOKEN from '../../styles/tokens';
 import Avatar from '../elements/Avatar';
 import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
+import Button from '../elements/Button';
 import Date from '../elements/Date';
 import Modal from './Modal';
 
