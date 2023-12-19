@@ -9,7 +9,16 @@ export const ENDPOINT = {
   PROFILE_IMAGE: 'profile-images/',
 };
 
-export const getApi = async (endPoint = ENDPOINT.RECIPIENTS, sort = '') => {
+export const getApi = async (endPoint) => {
+  const response = await fetch(`${API_URL}/${endPoint}`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const body = await response.json();
+  return body;
+};
+
+export const getTeamApi = async (endPoint = ENDPOINT.RECIPIENTS, sort = '') => {
   const query = `?sort=${sort}`;
   const response = await fetch(`${TEAM_API_URL}/${endPoint}${sort && query}`);
   if (!response.ok) {
@@ -19,7 +28,7 @@ export const getApi = async (endPoint = ENDPOINT.RECIPIENTS, sort = '') => {
   return body;
 };
 
-export const postApi = async (postData, endPoint = ENDPOINT.RECIPIENTS) => {
+export const postTeamApi = async (postData, endPoint = ENDPOINT.RECIPIENTS) => {
   const response = await fetch(`${TEAM_API_URL}/${endPoint}`, {
     method: 'POST',
     headers: {
@@ -34,9 +43,12 @@ export const postApi = async (postData, endPoint = ENDPOINT.RECIPIENTS) => {
   return body;
 };
 
-export const putApi = async (putData, endPoint = ENDPOINT.RECIPIENTS) => {
+export const putTeamApi = async (putData, endPoint = ENDPOINT.RECIPIENTS) => {
   const response = await fetch(`${TEAM_API_URL}/${endPoint}`, {
     method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(putData),
   });
   if (!response.ok) {
@@ -66,9 +78,12 @@ export const deleteApi = async (endPoint = ENDPOINT.RECIPIENTS) => {
   }
 };
 
-export const pathApi = async (updateData, endPoint = ENDPOINT.MESSAGES) => {
+export const pathTeamApi = async (updateData, endPoint = ENDPOINT.MESSAGES) => {
   const response = await fetch(`${TEAM_API_URL}/${endPoint}`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(updateData),
   });
   if (!response.ok) {

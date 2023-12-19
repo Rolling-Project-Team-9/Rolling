@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import Plusbutton from '../../assets/images/pulsbutton.png';
+import PlusButton from '../../assets/images/pulsButton.png';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
@@ -27,7 +27,7 @@ const Button = styled.button`
 `;
 
 const PlusImg = styled.div`
-  background: url(${Plusbutton});
+  background: url(${PlusButton});
   background-size: cover;
   width: 5.6rem;
   height: 5.6rem;

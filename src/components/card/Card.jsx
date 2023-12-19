@@ -12,7 +12,7 @@ const { color, boxShadow } = DESIGN_TOKEN;
 
 const { deleted } = Icons;
 
-function Card({ sender, profileImageURL, relationship, content, createdAt }) {
+function Card({ sender, profileImageURL, relationship, content, createdAt, fontFamily = 'Noto Sans' }) {
   const [hasButton, setHasButton] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -48,7 +48,7 @@ function Card({ sender, profileImageURL, relationship, content, createdAt }) {
         )}
       </Wrapper>
       <Outlined />
-      <TextField>{content}</TextField>
+      <TextField $fontFamily={fontFamily}>{content}</TextField>
       <DateContainer>
         <Date font="font12Regular" createdAt={createdAt} />
       </DateContainer>
@@ -99,6 +99,7 @@ const TextField = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  font-family: ${({ $fontFamily }) => $fontFamily};
 `;
 
 const DateContainer = styled.div`

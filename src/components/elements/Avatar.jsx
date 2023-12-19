@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import emptyAvatarImgSrc from '../../assets/images/avatar.png';
 
 const { color } = DESIGN_TOKEN;
 
@@ -25,5 +24,10 @@ const Img = styled.img`
   border: 1px solid ${color.gray[200]};
   background: ${color.gray[300]};
 `;
+
+function Avatar({ size = 'medium', profileImageURL, alt = '프로필 이미지', handleProfileClick }) {
+  const onClick = () => handleProfileClick && handleProfileClick(profileImageURL);
+  return <Img size={size} src={profileImageURL} alt={alt} onClick={onClick} />;
+}
 
 export default Avatar;
