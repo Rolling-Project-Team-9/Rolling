@@ -14,6 +14,7 @@ function PostPage() {
   const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
   const [data, setData] = useState([]);
   const [bgData, setBgData] = useState([]);
+  const [emojiUpload, setEmojiUpload] = useState(false);
   const { id } = useParams();
   const { name, messageCount, recentMessages, topReactions } = bgData;
 
@@ -38,7 +39,7 @@ function PostPage() {
 
     handlePostInfo(id);
     handlePostBackground(id);
-  }, [id, getRecipientMessageAsync, getRecipientAsync]);
+  }, [id, getRecipientMessageAsync, getRecipientAsync, emojiUpload]);
   const { results } = data;
   const bgColor = bgData.backgroundColor;
   const bgImg = bgData.backgroundImageURL;
@@ -51,6 +52,7 @@ function PostPage() {
         recentMessages={recentMessages}
         topReactions={topReactions}
         id={id}
+        setEmojiUpload={setEmojiUpload}
       />
       <Wrapper $bgImg={bgImg} $bgColor={bgColor}>
         <MessageCardList results={data && results} />
@@ -63,7 +65,7 @@ export default PostPage;
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background: ${(props) => {
     if (props.$bgImg) {
       return `url(${props.$bgImg})`;
