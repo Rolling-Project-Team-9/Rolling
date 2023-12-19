@@ -10,7 +10,16 @@ import ICONS from '../../constants/Icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function EditCard({ sender, profileImageURL, relationship, content, createdAt, disabled, handleDeleteMessage }) {
+function EditCard({
+  sender,
+  profileImageURL,
+  relationship,
+  content,
+  createdAt,
+  disabled,
+  handleDeleteMessage,
+  fontFamily = 'Noto Sans',
+}) {
   return (
     <Container>
       <Wrapper>
@@ -30,7 +39,7 @@ function EditCard({ sender, profileImageURL, relationship, content, createdAt, d
         />
       </Wrapper>
       <Outlined />
-      <TextFeild>{content}</TextFeild>
+      <TextFeild $fontFamily={fontFamily}>{content}</TextFeild>
       <DateContainer>
         <Date font="font12Regular" createdAt={createdAt} />
       </DateContainer>
@@ -82,6 +91,7 @@ const TextFeild = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
+  font-family: ${({ $fontFamily }) => $fontFamily};
 `;
 
 const DateContainer = styled.div`
