@@ -67,7 +67,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
             disabled={disabled}
             onClick={handleAddReactionClick}
           >
-            추가
+            <AddButtonWrapper>추가</AddButtonWrapper>
           </Button>
           <ColumnDivider />
           <Button variant="outlined" width="56" height="medium" icon={share} />
@@ -80,7 +80,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
 
 export default HeaderService;
 
-const { color, boxShadow } = DESIGN_TOKEN;
+const { color, boxShadow, layout } = DESIGN_TOKEN;
 
 const Container = styled.div`
   display: flex;
@@ -89,11 +89,16 @@ const Container = styled.div`
   max-width: 124.8rem;
   width: 100%;
   padding: 0 2.4rem;
-  height: 64px;
+  height: 6.4rem;
   margin: 0 auto;
   padding-top: 1.3rem;
   padding-bottom: 1.3rem;
-  background-color: ${color.white};
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    flex-direction: column;
+    align-items: flex-start;
+    height: 12.8rem;
+  }
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -115,6 +120,10 @@ const Senders = styled.div`
   display: flex;
   align-items: center;
   margin-right: 1.5rem;
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    display: none;
+  }
 `;
 
 const Emojis = styled.div`
@@ -141,4 +150,10 @@ const EmojiExpanded = styled.span`
   border-radius: 0.8rem;
   border: 1px solid #b6b6b6;
   box-shadow: ${boxShadow.card};
+`;
+
+const AddButtonWrapper = styled.p`
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    display: none;
+  }
 `;

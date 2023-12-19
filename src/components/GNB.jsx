@@ -1,8 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { getRecipient } from '../api/users';
+import useAsync from '../hooks/useAsync';
 import logo from '../assets/images/logo.png';
-import Button from './elements/Button';
+import Button from './elements/Button/Button';
+import DESIGN_TOKEN from '../styles/tokens';
+import RecipientName from './elements/RecipientName';
+
+const { layout } = DESIGN_TOKEN;
 
 const LogoIcon = styled.img`
   width: 107px;
@@ -20,6 +26,9 @@ const Container = styled.div`
   margin: 0 auto;
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    display: ${({ $location, id }) => ($location.includes(`/post/${id}`) ? 'none' : 'block')};
+  }
 `;
 const HorizontalDivider = styled.div`
   height: 0.1rem;
@@ -27,11 +36,15 @@ const HorizontalDivider = styled.div`
 `;
 
 function GNB() {
+  const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
+  const [data, setData] = useState([]);
+  const [bgData, setBgData] = useState([]);
+  const { id } = useParams();
+  const { name, messageCount, recentMessages, topReactions } = bgData;
   const [hasButton, setHasButton] = useState(false);
   const navigate = useNavigate();
   const onClick = () => navigate('/post');
   const location = useLocation();
-
   const handleButtonDisplay = useCallback(() => {
     if (location.pathname === '/' || location.pathname === '/list') {
       setHasButton(true);
@@ -44,9 +57,22 @@ function GNB() {
     handleButtonDisplay();
   }, [handleButtonDisplay]);
 
+  useEffect(() => {
+    const handlePostBackground = async (recipientId) => {
+      const result = await getRecipientAsync(recipientId);
+      if (!result) return;
+      const recipientData = result;
+      if (recipientData) {
+        setBgData(recipientData);
+      }
+    };
+
+    handlePostBackground(id);
+  }, [id, getRecipientAsync]);
+
   return (
     <>
-      <Container>
+      <Container $location={location.pathname} id={id}>
         <Link to="/">
           <LogoIcon src={logo} alt="logo" />
         </Link>

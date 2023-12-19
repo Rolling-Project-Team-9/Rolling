@@ -9,16 +9,63 @@ import HeaderService from '../components/HeaderService';
 import Button from '../components/elements/Button';
 import DESIGN_TOKEN from '../styles/tokens';
 
-const { typography } = DESIGN_TOKEN;
+const { typography, layout } = DESIGN_TOKEN;
 
 function EditPage() {
   const [isLoadingMessages, isErrorMessages, getRecipientMessageAsync] = useAsync(getRecipientMessages);
   const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
+  const [isLoadingDelete, isErrorDelete, deleteRecipientDAsync] = useAsync(deleteRecipient);
   const [data, setData] = useState([]);
   const [bgData, setBgData] = useState([]);
   const { id } = useParams();
   const { name, messageCount, recentMessages, topReactions } = bgData;
   const navigate = useNavigate();
+
+  const ContentWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 120rem;
+    margin: 0 auto;
+    padding-top: 6.3rem;
+
+    @media (max-width: ${layout.breakpoint.tablet}) {
+      width: 80rem;
+    }
+
+    @media (max-width: ${layout.breakpoint.mobile}) {
+      width: 40rem;
+    }
+  `;
+
+  const ButtonWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1.1rem;
+    ${typography.font16Regular};
+
+    @media (max-width: ${layout.breakpoint.tablet}) {
+      position: fixed;
+      justify-content: center;
+      bottom: 1rem;
+      left: 0.8rem;
+    }
+
+    @media (max-width: ${layout.breakpoint.mobile}) {
+      position: fixed;
+      justify-content: center;
+      bottom: 11px;
+    }
+  `;
+
+  const Container = styled.div`
+    width: 100%;
+    height: 100%;
+    background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
+    background-repeat: no-repeat;
+    background-size: cover;
+  `;
 
   useEffect(() => {
     const handleHeaderServiceLoad = async (recipientId) => {
@@ -46,7 +93,7 @@ function EditPage() {
   const bgImg = bgData.backgroundImageURL;
 
   const handleDeleteRecipients = async () => {
-    await deleteRecipient(id);
+    await deleteRecipientDAsync(id);
     navigate('/list');
   };
 
@@ -66,8 +113,8 @@ function EditPage() {
               삭제하기
             </Button>
           </ButtonWrapper>
+          <CardList results={data && results} />
         </ContentWrapper>
-        <CardList results={data && results} />
       </Container>
     </div>
   );
