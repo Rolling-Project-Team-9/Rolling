@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import EmojiPicker from 'emoji-picker-react';
 import DESIGN_TOKEN from '../styles/tokens';
 import Avatars from './elements/Avatars';
 import MessageCounter from './elements/MessageCounter';
@@ -16,7 +18,9 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
   const [isLoading, isError, getReactionsAsync] = useAsync(getReactions);
   const [disabled, setDisabled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [emojiOpen, setEmojiOpen] = useState(false);
   const [reactions, setReactions] = useState([]);
+  const [inputStr, setInputStr] = useState('');
 
   const handleArrowButtonClick = () => {
     if (!isOpen && reactions.length !== 0) {
@@ -25,7 +29,13 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
     }
     setIsOpen(false);
   };
-  const handleAddReactionClick = () => {};
+  const handleAddReactionClick = () => {
+    if (!emojiOpen) {
+      setEmojiOpen(true);
+      return;
+    }
+    setEmojiOpen(false);
+  };
 
   useEffect(() => {
     const handleReactionsLoad = async (recipientId) => {
@@ -35,9 +45,19 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
       setReactions(results);
     };
 
+    // const postEmoji = async (e) => {
+    //   e.preventDefault();
+
+    // }
+
     handleReactionsLoad(id);
   }, [id, getReactionsAsync]);
 
+  const clickEmoji = (emojiObject) => {
+    setInputStr(() => emojiObject.emoji);
+    setEmojiOpen(false);
+  };
+  console.log(inputStr);
   return (
     <>
       <Container>
@@ -59,16 +79,23 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
               </EmojiExpanded>
             )}
           </Reactions>
-          <Button
-            variant="outlined"
-            width="90"
-            height="medium"
-            icon={disabled ? add.white : add.black}
-            disabled={disabled}
-            onClick={handleAddReactionClick}
-          >
-            <AddButtonWrapper>추가</AddButtonWrapper>
-          </Button>
+          <AddButtonWrapper>
+            <Button
+              variant="outlined"
+              width="90"
+              height="medium"
+              icon={disabled ? add.white : add.black}
+              disabled={disabled}
+              onClick={handleAddReactionClick}
+            >
+              추가
+            </Button>
+            {emojiOpen && (
+              <EmojiPickerWrapper>
+                <EmojiPicker width="100%" onEmojiClick={clickEmoji} />
+              </EmojiPickerWrapper>
+            )}
+          </AddButtonWrapper>
           <ColumnDivider />
           <Button variant="outlined" width="56" height="medium" icon={share} />
         </Wrapper>
@@ -152,8 +179,14 @@ const EmojiExpanded = styled.span`
   box-shadow: ${boxShadow.card};
 `;
 
-const AddButtonWrapper = styled.p`
+const AddButtonWrapper = styled.div`
+position: relative;
   @media (max-width: ${layout.breakpoint.mobile}) {
     display: none;
   }
+`;
+const EmojiPickerWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 4.3rem;
 `;
