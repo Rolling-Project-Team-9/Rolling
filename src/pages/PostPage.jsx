@@ -53,6 +53,7 @@ function PostPage() {
         topReactions={topReactions}
         id={id}
         setEmojiUpload={setEmojiUpload}
+        emojiUpload={emojiUpload}
       />
       <Wrapper $bgImg={bgImg} $bgColor={bgColor}>
         <MessageCardList results={data && results} />

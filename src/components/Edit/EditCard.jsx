@@ -24,7 +24,7 @@ function EditCard({
     <Container>
       <Wrapper>
         <Profile>
-          <Avatar $avatarImgSrc={profileImageURL} />
+          <Avatar profileImageURL={profileImageURL} />
           <SenderProfile>
             <SenderName name={sender} />
             <Badge relationship={relationship} />

@@ -1,4 +1,4 @@
-import { postTeamApi, ENDPOINT, pathTeamApi, putTeamApi } from './Api';
+import { postTeamApi, ENDPOINT, pathTeamApi, putTeamApi } from './api';
 
 const { RECIPIENTS, MESSAGES, REACTIONS } = ENDPOINT;
 

@@ -7,7 +7,7 @@ import InputText from '../components/elements/InputText';
 import Dropdown from '../components/elements/Dropdown';
 import Avatar from '../components/elements/Avatar';
 import TextEdit from '../components/message/TextArea';
-import Button from '../components/elements/Button/Button';
+import Button from '../components/elements/Button';
 import useAsync from '../hooks/useAsync';
 import { getProfileImage } from '../api/users';
 import { createMessage } from '../api/posts';

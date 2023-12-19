@@ -155,7 +155,7 @@ function CreatePage() {
           ))}
         </TabList>
         <TabPanel role="tabpanel">{TABS[activeTab].content}</TabPanel>
-        <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={disabled}>
+        <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={!values.name}>
           생성하기
         </Button>
       </form>
@@ -245,7 +245,7 @@ const TabButton = styled.button`
 
 const TabPanel = styled.div`
   margin-bottom: 6.9rem;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */ //미디어쿼리에서 사용해 주세요
 `;
 
 const InputRadioGroup = styled.div`

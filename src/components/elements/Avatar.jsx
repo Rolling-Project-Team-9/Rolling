@@ -4,10 +4,6 @@ import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color } = DESIGN_TOKEN;
 
-function Avatar({ size = 'medium', $avatarImgSrc = emptyAvatarImgSrc, alt = '프로필 이미지' }) {
-  return <Img size={size} src={$avatarImgSrc} alt={alt} />;
-}
-
 const AVATAR_SIZE = {
   small: '2.8rem',
   medium: '5.6rem',

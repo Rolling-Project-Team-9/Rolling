@@ -4,9 +4,8 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { getRecipient } from '../api/users';
 import useAsync from '../hooks/useAsync';
 import logo from '../assets/images/logo.png';
-import Button from './elements/Button/Button';
+import Button from './elements/Button';
 import DESIGN_TOKEN from '../styles/tokens';
-import RecipientName from './elements/RecipientName';
 
 const { layout } = DESIGN_TOKEN;
 

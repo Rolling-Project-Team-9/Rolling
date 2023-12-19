@@ -1,4 +1,4 @@
-import { deleteTeamApi, ENDPOINT } from './Api';
+import { deleteTeamApi, ENDPOINT } from './api';
 
 const { RECIPIENTS, MESSAGES } = ENDPOINT;
 

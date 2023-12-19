@@ -15,7 +15,7 @@ import useAsync from '../hooks/useAsync';
 
 const { add, share, arrow } = Icons;
 
-function HeaderService({ name, messageCount, recentMessages, topReactions, id, setEmojiUpload }) {
+function HeaderService({ name, messageCount, recentMessages, topReactions, id, emojiUpload, setEmojiUpload }) {
   const [isLoading, isError, getReactionsAsync] = useAsync(getReactions);
   const [isReactionLoading, isReactionError, createReactionAsync] = useAsync(createReaction);
   const [disabled, setDisabled] = useState(false);
@@ -47,7 +47,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, s
     };
 
     handleReactionsLoad(id);
-  }, [id, getReactionsAsync]);
+  }, [id, getReactionsAsync, emojiUpload]);
 
   const clickEmoji = async (emojiObject) => {
     await createReactionAsync(id, { emoji: emojiObject.emoji, type: 'increase' });

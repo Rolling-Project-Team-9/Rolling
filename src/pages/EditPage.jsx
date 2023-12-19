@@ -17,55 +17,10 @@ function EditPage() {
   const [isLoadingDelete, isErrorDelete, deleteRecipientDAsync] = useAsync(deleteRecipient);
   const [data, setData] = useState([]);
   const [bgData, setBgData] = useState([]);
+  const [emojiUpload, setEmojiUpload] = useState(false);
   const { id } = useParams();
   const { name, messageCount, recentMessages, topReactions } = bgData;
   const navigate = useNavigate();
-
-  const ContentWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 120rem;
-    margin: 0 auto;
-    padding-top: 6.3rem;
-
-    @media (max-width: ${layout.breakpoint.tablet}) {
-      width: 80rem;
-    }
-
-    @media (max-width: ${layout.breakpoint.mobile}) {
-      width: 40rem;
-    }
-  `;
-
-  const ButtonWrapper = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-    margin-bottom: 1.1rem;
-    ${typography.font16Regular};
-
-    @media (max-width: ${layout.breakpoint.tablet}) {
-      position: fixed;
-      justify-content: center;
-      bottom: 1rem;
-      left: 0.8rem;
-    }
-
-    @media (max-width: ${layout.breakpoint.mobile}) {
-      position: fixed;
-      justify-content: center;
-      bottom: 11px;
-    }
-  `;
-
-  const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
-    background-repeat: no-repeat;
-    background-size: cover;
-  `;
 
   useEffect(() => {
     const handleHeaderServiceLoad = async (recipientId) => {
@@ -88,7 +43,7 @@ function EditPage() {
 
     handleHeaderServiceLoad(id);
     handlePostBackground(id);
-  }, [id, getRecipientMessageAsync, getRecipientAsync]);
+  }, [id, getRecipientMessageAsync, getRecipientAsync, emojiUpload]);
   const { results } = data;
   const bgImg = bgData.backgroundImageURL;
 
@@ -105,6 +60,8 @@ function EditPage() {
         recentMessages={recentMessages}
         topReactions={topReactions}
         id={id}
+        setEmojiUpload={setEmojiUpload}
+        emojiUpload={emojiUpload}
       />
       <Container $bgImg={bgImg}>
         <ContentWrapper>
@@ -123,16 +80,41 @@ function EditPage() {
 export default EditPage;
 
 const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 120rem;
   margin: 0 auto;
   padding-top: 6.3rem;
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    width: 80rem;
+  }
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    width: 40rem;
+  }
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  width: 100%;
   margin-bottom: 1.1rem;
   ${typography.font16Regular};
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    position: fixed;
+    justify-content: center;
+    bottom: 1rem;
+    left: 0.8rem;
+  }
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    position: fixed;
+    justify-content: center;
+    bottom: 11px;
+  }
 `;
 
 const Container = styled.div`

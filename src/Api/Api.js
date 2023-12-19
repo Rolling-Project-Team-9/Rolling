@@ -58,7 +58,7 @@ export const putTeamApi = async (putData, endPoint = ENDPOINT.RECIPIENTS) => {
   return body;
 };
 
-export const deleteApi = async (endPoint = ENDPOINT.RECIPIENTS) => {
+export const deleteTeamApi = async (endPoint = ENDPOINT.RECIPIENTS) => {
   try {
     const response = await fetch(`${TEAM_API_URL}/${endPoint}`, { method: 'DELETE' });
 
