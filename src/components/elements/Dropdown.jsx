@@ -48,6 +48,8 @@ const Ul = styled.ul`
   border: 1px solid ${color.gray[300]};
   background: ${color.white};
   width: 32rem;
+  margin-top: 0.8rem;
+  position: absolute;
 `;
 
 const Li = styled.li`
@@ -64,7 +66,7 @@ const Li = styled.li`
   }
 `;
 
-function Dropdown() {
+function Dropdown({ name, setValues, items }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState('');
   const containerRef = useRef(null);
@@ -90,20 +92,22 @@ function Dropdown() {
   const handleMenuItemClick = (menuItem) => {
     setSelectedMenuItem(menuItem);
     setIsOpen(false);
+    setValues((preValues) => ({ ...preValues, [name]: menuItem }));
   };
 
   return (
     <Container ref={containerRef}>
       <button type="button" onClick={toggleDropdown}>
-        {selectedMenuItem || 'PlaceHolder'}
+        {selectedMenuItem || items[0]}
         <img src={isOpen ? upArrow : downArrow} alt="Arrow" />
       </button>
       {isOpen && (
         <Ul>
-          <Li onClick={() => handleMenuItemClick('지인')}>지인</Li>
-          <Li onClick={() => handleMenuItemClick('친구')}>친구</Li>
-          <Li onClick={() => handleMenuItemClick('가족')}>가족</Li>
-          <Li onClick={() => handleMenuItemClick('동료')}>동료</Li>
+          {items?.map((item) => (
+            <Li key={item} name={name} onClick={() => handleMenuItemClick(item)}>
+              {item}
+            </Li>
+          ))}
         </Ul>
       )}
     </Container>
