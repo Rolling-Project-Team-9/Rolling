@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getRecipientList } from '../api/users';
-import Button from '../components/elements/Button/Button';
+import Button from '../components/elements/Button';
 import PostCardList from '../components/list/PostCardList';
 import useAsync from '../hooks/useAsync';
 import DESIGN_TOKEN from '../styles/tokens';

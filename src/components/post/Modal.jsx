@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { getMessage } from '../../api/users';
 import useAsync from '../../hooks/useAsync';
 import DESIGN_TOKEN from '../../styles/tokens';
-import Button from '../elements/Button/Button';
+import Button from '../elements/Button';
 import Badge from '../elements/Badge';
 import Date from '../elements/Date';
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import ICONS from '../elements/Button/Icons';
+import ICONS from '../../constants/Icons';
 import PostCard from './PostCard';
 import DESIGN_TOKEN from '../../styles/tokens';
 
