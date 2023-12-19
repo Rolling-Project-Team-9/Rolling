@@ -9,18 +9,19 @@ import Emoji from './elements/Emoji';
 import Button from './elements/Button';
 import Icons from '../constants/Icons';
 import RecipientName from './elements/RecipientName';
+import { createReaction } from '../api/posts';
 import { getReactions } from '../api/users';
 import useAsync from '../hooks/useAsync';
 
 const { add, share, arrow } = Icons;
 
-function HeaderService({ name, messageCount, recentMessages, topReactions, id }) {
+function HeaderService({ name, messageCount, recentMessages, topReactions, id, setEmojiUpload }) {
   const [isLoading, isError, getReactionsAsync] = useAsync(getReactions);
+  const [isReactionLoading, isReactionError, createReactionAsync] = useAsync(createReaction);
   const [disabled, setDisabled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [reactions, setReactions] = useState([]);
-  const [inputStr, setInputStr] = useState('');
 
   const handleArrowButtonClick = () => {
     if (!isOpen && reactions.length !== 0) {
@@ -45,19 +46,15 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id })
       setReactions(results);
     };
 
-    // const postEmoji = async (e) => {
-    //   e.preventDefault();
-
-    // }
-
     handleReactionsLoad(id);
   }, [id, getReactionsAsync]);
 
-  const clickEmoji = (emojiObject) => {
-    setInputStr(() => emojiObject.emoji);
+  const clickEmoji = async (emojiObject) => {
+    await createReactionAsync(id, { emoji: emojiObject.emoji, type: 'increase' });
     setEmojiOpen(false);
+    setEmojiUpload((prevEmojiUpload) => !prevEmojiUpload);
   };
-  console.log(inputStr);
+
   return (
     <>
       <Container>
