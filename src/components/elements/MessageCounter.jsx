@@ -4,6 +4,15 @@ import DESIGN_TOKEN from '../../styles/tokens';
 
 const { color, typography } = DESIGN_TOKEN;
 
+function MessageCounter({ colorNum, font = 'font16Regular', messageCount = 0 }) {
+  return (
+    <Span $font={font} $colorNum={colorNum}>
+      <BoldText>{messageCount}</BoldText>
+      명이 작성했어요!
+    </Span>
+  );
+}
+
 const Span = styled.span`
   color: inherit;
   color: ${({ $colorNum }) => $colorNum && color.gray[$colorNum]};
@@ -13,14 +22,5 @@ const Span = styled.span`
 const BoldText = styled.span`
   font-weight: 700;
 `;
-
-function MessageCounter({ colorNum, font = 'font16Regular', messageCount = 0 }) {
-  return (
-    <Span $font={font} $colorNum={colorNum}>
-      <BoldText>{messageCount}</BoldText>
-      명이 작성했어요!
-    </Span>
-  );
-}
 
 export default MessageCounter;

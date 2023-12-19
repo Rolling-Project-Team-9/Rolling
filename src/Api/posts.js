@@ -1,4 +1,4 @@
-import { postApi, ENDPOINT, pathApi, putApi } from './Api';
+import { postApi, ENDPOINT, pathApi, putApi } from './api';
 
 const { RECIPIENTS, MESSAGES, REACTIONS } = ENDPOINT;
 
