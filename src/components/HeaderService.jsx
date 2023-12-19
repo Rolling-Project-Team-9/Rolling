@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import EmojiPicker from 'emoji-picker-react';
@@ -21,11 +21,15 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
   const [disabled, setDisabled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [emojiOpen, setEmojiOpen] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const [reactions, setReactions] = useState([]);
+  const containerRef = useRef(null);
 
   const handleArrowButtonClick = () => {
     if (!isOpen && reactions.length !== 0) {
       setIsOpen(true);
+      setEmojiOpen(false);
+      setShareOpen(false);
       return;
     }
     setIsOpen(false);
@@ -33,9 +37,20 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
   const handleAddReactionClick = () => {
     if (!emojiOpen) {
       setEmojiOpen(true);
+      setIsOpen(false);
+      setShareOpen(false);
       return;
     }
     setEmojiOpen(false);
+  };
+  const handleShareClick = () => {
+    if (!shareOpen) {
+      setShareOpen(true);
+      setEmojiOpen(false);
+      setIsOpen(false);
+      return;
+    }
+    setShareOpen(false);
   };
 
   useEffect(() => {
@@ -47,7 +62,19 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
     };
 
     handleReactionsLoad(id);
-  }, [id, getReactionsAsync, emojiUpload]);
+
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [id, getReactionsAsync, emojiUpload, containerRef]);
 
   const clickEmoji = async (emojiObject) => {
     await createReactionAsync(id, { emoji: emojiObject.emoji, type: 'increase' });
@@ -57,7 +84,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
 
   return (
     <>
-      <Container>
+      <Container ref={containerRef}>
         <RecipientName font="font28Bold" name={name} />
         <Wrapper>
           <Senders>
@@ -94,7 +121,15 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
             )}
           </AddButtonWrapper>
           <ColumnDivider />
-          <Button variant="outlined" width="56" height="medium" icon={share} />
+          <ShareWrapper>
+            <Button variant="outlined" width="56" height="medium" icon={share} onClick={handleShareClick} />
+            {shareOpen && (
+              <Ul>
+                <Li>카카오톡 공유</Li>
+                <Li>URL 공유</Li>
+              </Ul>
+            )}
+          </ShareWrapper>
         </Wrapper>
       </Container>
       <HorizontalDivider />
@@ -104,7 +139,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
 
 export default HeaderService;
 
-const { color, boxShadow, layout } = DESIGN_TOKEN;
+const { color, boxShadow, layout, typography } = DESIGN_TOKEN;
 
 const Container = styled.div`
   display: flex;
@@ -177,7 +212,7 @@ const EmojiExpanded = styled.span`
 `;
 
 const AddButtonWrapper = styled.div`
-position: relative;
+  position: relative;
   @media (max-width: ${layout.breakpoint.mobile}) {
     display: none;
   }
@@ -186,4 +221,37 @@ const EmojiPickerWrapper = styled.div`
   position: absolute;
   right: 0;
   top: 4.3rem;
+`;
+
+const ShareWrapper = styled.div`
+  position: relative;
+`;
+
+const Ul = styled.ul`
+  display: inline-flex;
+  padding: 1rem 0.1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0.8rem;
+  border: 1px solid ${color.gray[300]};
+  background: ${color.white};
+  ${boxShadow.card};
+  position: absolute;
+  right: 0;
+  top: 4.3rem;
+`;
+
+const Li = styled.li`
+  display: flex;
+  width: 13.8rem;
+  padding: 1.2rem 1.6rem;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  color: ${color.gray[900]};
+  ${typography.font16Regular};
+
+  &:hover {
+    background: ${color.gray[100]};
+  }
 `;
