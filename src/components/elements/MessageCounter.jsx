@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 
-const { color, typography } = DESIGN_TOKEN;
+const { layout, color, typography } = DESIGN_TOKEN;
 
-function MessageCounter({ colorNum, font = 'font16Regular', messageCount = 0 }) {
+function MessageCounter({ colorNum, font = 'font16Regular', messageCount = 0, className }) {
   return (
-    <Span $font={font} $colorNum={colorNum}>
+    <Span className={className} $font={font} $colorNum={colorNum}>
       <BoldText>{messageCount}</BoldText>
       명이 작성했어요!
     </Span>
