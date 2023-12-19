@@ -10,7 +10,7 @@ import MessageCounter from '../elements/MessageCounter';
 import RecipientName from '../elements/RecipientName';
 import Emoji from '../elements/Emoji';
 
-const { color, boxShadow, overlayBackDropColor, layout } = DESIGN_TOKEN;
+const { color, boxShadow, overlayBackDropColor, layout, typography } = DESIGN_TOKEN;
 
 function PostCard({ name, backgroundColor, backgroundImgUrl, messageCount, recentMessages, topReactions, onClick }) {
   return (
@@ -21,13 +21,13 @@ function PostCard({ name, backgroundColor, backgroundImgUrl, messageCount, recen
           <SenderContainer $fontColor="white">
             <RecipientName font="font24Bold" name={name} />
             <Avatars recentMessages={recentMessages} messageCount={messageCount} />
-            <MessageCounter font="font16Regular" messageCount={messageCount} />
+            <StyledMessageCounter font="font16Regular" messageCount={messageCount} />
           </SenderContainer>
         ) : (
           <SenderContainer>
             <RecipientName colorNum="900" font="font24Bold" name={name} />
             <Avatars recentMessages={recentMessages} messageCount={messageCount} />
-            <MessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
+            <StyledMessageCounter font="font16Regular" colorNum="700" messageCount={messageCount} />
           </SenderContainer>
         )}
         <EmojiContainer>
@@ -37,6 +37,12 @@ function PostCard({ name, backgroundColor, backgroundImgUrl, messageCount, recen
     </CardContainer>
   );
 }
+
+const StyledMessageCounter = styled(MessageCounter)`
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    ${typography.font14Regular}
+  }
+`;
 
 const CardContainer = styled.div`
   z-index: 0;
