@@ -39,11 +39,10 @@ function CreatePage() {
   const [values, setValues] = useState({
     name: '',
     backgroundColor: 'beige',
-    backgroundImage: '',
+    backgroundImageURL: null,
   });
 
   const [activeTab, setActiveTab] = useState(0);
-  console.log(values);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -108,7 +107,7 @@ function CreatePage() {
               <InputRadio
                 type="radio"
                 id={`optionImage-${index}`}
-                name="backgroundImage"
+                name="backgroundImageURL"
                 value={image}
                 onChange={handleChangeValues}
                 defaultChecked={index === 0}
