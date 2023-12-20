@@ -136,9 +136,6 @@ const Container = styled.div`
   max-width: ${layout.breakpoint.mobile};
   margin: 0 auto;
   padding: 5.7rem 2.4rem;
-  @media screen and (max-width: ${layout.breakpoint.mobile}) {
-    padding-bottom: 22.6rem;
-  }
 `;
 
 const Section = styled.div`
@@ -182,9 +179,10 @@ const StyledAvatar = styled.div`
 `;
 
 const SubmitButton = styled.div`
-  position: fixed;
-  left: 2.4rem;
-  right: 2.4rem;
-  bottom: 2.4rem;
-  margin-top: 1.2rem;
+  @media screen and (max-width: ${layout.breakpoint.mobile}) {
+    position: fixed;
+    left: 2.4rem;
+    right: 2.4rem;
+    bottom: 2.4rem;
+  }
 `;

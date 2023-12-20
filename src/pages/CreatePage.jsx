@@ -44,7 +44,6 @@ function CreatePage() {
   });
 
   const [activeTab, setActiveTab] = useState(0);
-  console.log(values);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
