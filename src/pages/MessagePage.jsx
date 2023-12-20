@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import DESIGN_TOKEN from '../styles/tokens';
 import InputText from '../components/elements/InputText';
 import Dropdown from '../components/elements/Dropdown';
@@ -67,58 +68,63 @@ function MessagePage() {
   }, [getProfileImageAsync, isBlank]);
 
   return (
-    <Container>
-      <form>
-        <Section>
-          <Title htmlFor="sender">From.</Title>
-          <InputText
-            id="sender"
-            name="sender"
-            value={values.sender}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={isBlank}
-          />
-        </Section>
-        <Section>
-          <Title>프로필 이미지</Title>
-          <OptionProfile>
-            <Avatar size="large" profileImageURL={selectedProfile} />
-            <Section>
-              <Description>프로필 이미지를 선택해주세요!</Description>
-              <StyledAvatar>
-                {profileData?.map((item) => (
-                  <Avatar key={item} size="medium" profileImageURL={item} handleProfileClick={handleProfileClick} />
-                ))}
-              </StyledAvatar>
-            </Section>
-          </OptionProfile>
-        </Section>
-        <Section>
-          <Title>상대와의 관계</Title>
-          <Dropdown name="relationship" setValues={setValues} items={RELATIONSHIP} />
-        </Section>
-        <Section>
-          <Title htmlFor="content">내용을 입력해 주세요</Title>
-          <TextEdit id="content" name="content" value={values.content} onChange={handleChange} />
-        </Section>
-        <Section>
-          <Title>폰트 선택</Title>
-          <Dropdown name="font" setValues={setValues} items={FONT} />
-        </Section>
-        <SubmitButton>
-          <Button
-            type="submit"
-            $variant="primary"
-            height="x-large"
-            disabled={!values.sender || !values.content || isPostLoading}
-            onClick={handleSubmit}
-          >
-            생성하기
-          </Button>
-        </SubmitButton>
-      </form>
-    </Container>
+    <>
+      <Helmet>
+        <title>Message 작성</title>
+      </Helmet>
+      <Container>
+        <form>
+          <Section>
+            <Title htmlFor="sender">From.</Title>
+            <InputText
+              id="sender"
+              name="sender"
+              value={values.sender}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={isBlank}
+            />
+          </Section>
+          <Section>
+            <Title>프로필 이미지</Title>
+            <OptionProfile>
+              <Avatar size="large" profileImageURL={selectedProfile} />
+              <Section>
+                <Description>프로필 이미지를 선택해주세요!</Description>
+                <StyledAvatar>
+                  {profileData?.map((item) => (
+                    <Avatar key={item} size="medium" profileImageURL={item} handleProfileClick={handleProfileClick} />
+                  ))}
+                </StyledAvatar>
+              </Section>
+            </OptionProfile>
+          </Section>
+          <Section>
+            <Title>상대와의 관계</Title>
+            <Dropdown name="relationship" setValues={setValues} items={RELATIONSHIP} />
+          </Section>
+          <Section>
+            <Title htmlFor="content">내용을 입력해 주세요</Title>
+            <TextEdit id="content" name="content" value={values.content} onChange={handleChange} />
+          </Section>
+          <Section>
+            <Title>폰트 선택</Title>
+            <Dropdown name="font" setValues={setValues} items={FONT} />
+          </Section>
+          <SubmitButton>
+            <Button
+              type="submit"
+              $variant="primary"
+              height="x-large"
+              disabled={!values.sender || !values.content || isPostLoading}
+              onClick={handleSubmit}
+            >
+              생성하기
+            </Button>
+          </SubmitButton>
+        </form>
+      </Container>
+    </>
   );
 }
 
