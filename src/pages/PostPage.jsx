@@ -73,7 +73,7 @@ function PostPage() {
   return (
     <div>
       <Helmet>
-        <title>{name}</title>
+        <title>{name && `${name.slice(0, 13)} | Rolling`}</title>
       </Helmet>
       <HeaderService
         name={name}

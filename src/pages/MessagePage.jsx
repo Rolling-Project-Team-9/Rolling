@@ -70,7 +70,7 @@ function MessagePage() {
   return (
     <>
       <Helmet>
-        <title>Message 작성</title>
+        <title>카드 보내기 | Rolling</title>
       </Helmet>
       <Container>
         <form>
