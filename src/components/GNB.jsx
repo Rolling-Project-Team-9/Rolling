@@ -58,7 +58,7 @@ function GNB() {
           <LogoIcon src={logo} alt="logo" />
         </Link>
         {hasButton && (
-          <Button variant="outlined" width="157" height="large" type="button" onClick={onClick}>
+          <Button $variant="outlined" width="157" height="large" type="button" onClick={onClick}>
             롤링 페이퍼 만들기
           </Button>
         )}

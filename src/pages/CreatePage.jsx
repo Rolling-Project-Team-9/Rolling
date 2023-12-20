@@ -85,7 +85,7 @@ function CreatePage() {
       content: (
         <InputRadioGroup>
           {COLOR_VALUES.map((colors, index) => (
-            <InputLabel htmlFor={`optionColor-${index}`} key={colors} value={colors} variant="color">
+            <InputLabel htmlFor={`optionColor-${index}`} key={colors} value={colors} $variant="color">
               <InputRadio
                 type="radio"
                 id={`optionColor-${index}`}
@@ -104,7 +104,7 @@ function CreatePage() {
       content: (
         <InputRadioGroup>
           {IMAGE_VALUES.map((image, index) => (
-            <InputLabel htmlFor={`optionImage-${index}`} key={image} value={image} variant="image">
+            <InputLabel htmlFor={`optionImage-${index}`} key={image} value={image} $variant="image">
               <InputRadio
                 type="radio"
                 id={`optionImage-${index}`}
@@ -156,7 +156,7 @@ function CreatePage() {
         </TabList>
         <TabPanel role="tabpanel">{TABS[activeTab].content}</TabPanel>
         <StyledButton>
-          <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={!values.name}>
+          <Button type="submit" $variant="primary" height="x-large" onClick={handleSubmit} disabled={!values.name}>
             생성하기
           </Button>
         </StyledButton>
@@ -270,8 +270,8 @@ const InputLabel = styled.label`
   border-radius: 1.2rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  ${({ variant }) => css`
-    ${VARIANT_STYLE[variant]}
+  ${({ $variant }) => css`
+    ${VARIANT_STYLE[$variant]}
   `};
 `;
 

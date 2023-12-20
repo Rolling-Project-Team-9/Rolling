@@ -138,7 +138,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
           </Reactions>
           <AddButtonWrapper>
             <Button
-              variant="outlined"
+              $variant="outlined"
               width="90"
               height="medium"
               icon={disabled ? add.white : add.black}
@@ -158,7 +158,7 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
             <Toast />
           </ToastWrapper>
           <ShareWrapper>
-            <Button variant="outlined" width="56" height="medium" icon={share} onClick={handleShareClick} />
+            <Button $variant="outlined" width="56" height="medium" icon={share} onClick={handleShareClick} />
             {shareOpen && (
               <Ul>
                 <Li onClick={handleSharedKakao}>카카오톡 공유</Li>

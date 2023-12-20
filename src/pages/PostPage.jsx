@@ -83,7 +83,7 @@ function PostPage() {
       <Container $bgImg={bgImg} $bgColor={bgColor}>
         <ContentWrapper>
           <ButtonWrapper>
-            <Button type="button" variant="primary" width="92" height="large" onClick={handleNavigate}>
+            <Button type="button" $variant="primary" width="92" height="large" onClick={handleNavigate}>
               편집하기
             </Button>
           </ButtonWrapper>

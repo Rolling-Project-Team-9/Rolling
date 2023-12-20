@@ -109,7 +109,7 @@ function MessagePage() {
         <SubmitButton>
           <Button
             type="submit"
-            variant="primary"
+            $variant="primary"
             height="x-large"
             disabled={!values.sender || !values.content || isPostLoading}
             onClick={handleSubmit}

@@ -32,7 +32,7 @@ function Feature() {
       <PointCard content={content2} $isReverse />
       <StyledLink>
         <Link to="/list">
-          <Button type="button" width="280" height="x-large" variant="primary">
+          <Button type="button" width="280" height="x-large" $variant="primary">
             구경해보기
           </Button>
         </Link>
