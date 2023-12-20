@@ -6,11 +6,11 @@ import DESIGN_TOKEN from '../styles/tokens';
 import InputText from '../components/elements/InputText';
 import Dropdown from '../components/elements/Dropdown';
 import Avatar from '../components/elements/Avatar';
-import TextEdit from '../components/message/TextArea';
 import Button from '../components/elements/Button';
 import useAsync from '../hooks/useAsync';
 import { getProfileImage } from '../api/users';
 import { createMessage } from '../api/posts';
+import TextEditor from '../components/message/TextEditor';
 
 const RELATIONSHIP = ['지인', '동료', '친구', '가족'];
 const FONT = ['Noto Sans', 'Pretendard', '나눔명조'];
@@ -89,14 +89,14 @@ function MessagePage() {
             <Title>프로필 이미지</Title>
             <OptionProfile>
               <Avatar size="large" profileImageURL={selectedProfile} />
-              <Section>
+              <Wrapper>
                 <Description>프로필 이미지를 선택해주세요!</Description>
                 <StyledAvatar>
                   {profileData?.map((item) => (
                     <Avatar key={item} size="medium" profileImageURL={item} handleProfileClick={handleProfileClick} />
                   ))}
                 </StyledAvatar>
-              </Section>
+              </Wrapper>
             </OptionProfile>
           </Section>
           <Section>
@@ -105,7 +105,7 @@ function MessagePage() {
           </Section>
           <Section>
             <Title htmlFor="content">내용을 입력해 주세요</Title>
-            <TextEdit id="content" name="content" value={values.content} onChange={handleChange} />
+            <TextEditor id="content" name="content" value={values.content} setValues={setValues} />
           </Section>
           <Section>
             <Title>폰트 선택</Title>
@@ -136,6 +136,10 @@ const Container = styled.div`
   max-width: ${layout.breakpoint.mobile};
   margin: 0 auto;
   padding: 5.7rem 2.4rem;
+  @media screen and (max-width: ${layout.breakpoint.mobile}) {
+    padding-top: 5rem;
+    padding-bottom: 22.6rem;
+  }
 `;
 
 const Section = styled.div`
@@ -151,10 +155,9 @@ const Title = styled.label`
 
 const Description = styled.p`
   grid-area: image;
-  ${typography.font16Regular};
   color: ${color.gray[500]};
+  ${typography.font16Regular};
 `;
-
 const OptionProfile = styled.div`
   display: grid;
   grid-template:
@@ -162,23 +165,26 @@ const OptionProfile = styled.div`
     'img image' / auto 1fr;
   column-gap: 3.2rem;
 `;
-
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+`;
 const StyledAvatar = styled.div`
   grid-area: image;
   display: flex;
   gap: 0.4rem;
   align-items: center;
-
   img {
     cursor: pointer;
   }
-
   @media screen and (max-width: ${layout.breakpoint.mobile}) {
     flex-wrap: wrap;
   }
 `;
 
 const SubmitButton = styled.div`
+  margin-top: 1.2rem;
   @media screen and (max-width: ${layout.breakpoint.mobile}) {
     position: fixed;
     left: 2.4rem;
