@@ -40,7 +40,7 @@ function MessagesCard({
           </Profile>
         </Wrapper>
         <Outlined />
-        <TextFelid $fontFamily={fontFamily}>{content}</TextFelid>
+        <TextField $fontFamily={fontFamily}>{content}</TextField>
         <DateContainer>
           <Date font="font12Regular" createdAt={createdAt} />
         </DateContainer>
@@ -89,7 +89,7 @@ const Outlined = styled.div`
   margin: 0 2.4rem;
 `;
 
-const TextFelid = styled.div`
+const TextField = styled.div`
   width: 33.6rem;
   height: 10rem;
   margin: auto 2.4rem;
