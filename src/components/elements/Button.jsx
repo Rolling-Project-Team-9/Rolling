@@ -2,7 +2,7 @@ import React from 'react';
 import { css, styled } from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 
-const { color, typography } = DESIGN_TOKEN;
+const { color, typography, layout } = DESIGN_TOKEN;
 
 const HEIGHT = {
   small: '2.8rem',
@@ -53,6 +53,9 @@ const VARIANT_STYLE = {
     &:active,
     &:focus {
       background-color: ${color.purple[900]};
+    }
+    @media screen and (max-width: ${layout.breakpoint.mobile}) {
+      width: 100%;
     }
   `,
   secondary: css`

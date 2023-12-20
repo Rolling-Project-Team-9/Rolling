@@ -24,7 +24,7 @@ const Container = styled.div`
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
   @media (max-width: ${layout.breakpoint.mobile}) {
-    display: ${({ $location, id }) => ($location.startsWith(`/post/${id}`) && !$location.startsWith(`/post/${id}/message`) ? 'none' : 'block')};
+    display: ${({ $location, id }) => $location.startsWith(`/post/${id}`) && !$location.startsWith(`/post/${id}/message`) ? 'none' : 'flex'};
   }
 `;
 const HorizontalDivider = styled.div`
