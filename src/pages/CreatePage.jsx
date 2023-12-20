@@ -39,7 +39,7 @@ function CreatePage() {
   const [values, setValues] = useState({
     name: '',
     backgroundColor: 'beige',
-    backgroundImage: null,
+    backgroundImage: '',
   });
 
   const [activeTab, setActiveTab] = useState(0);
