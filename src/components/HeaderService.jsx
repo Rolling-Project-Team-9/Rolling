@@ -30,7 +30,6 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
 
   const host = 'https://rolling-team9.netlify.app';
   const currentPath = `/post/${id}`;
-  console.log(host + currentPath);
 
   const handleArrowButtonClick = () => {
     if (!isOpen && reactions.length !== 0) {
