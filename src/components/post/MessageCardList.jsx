@@ -32,5 +32,5 @@ const Container = styled.div`
   column-gap: 2.8rem;
   width: 120rem;
   margin: 0 auto;
-  padding: 11.3rem 0;
+  padding-bottom: 11.3rem;
 `;

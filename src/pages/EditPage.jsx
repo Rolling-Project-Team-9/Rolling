@@ -4,12 +4,10 @@ import styled from 'styled-components';
 import { getRecipientMessages, getRecipient } from '../api/users';
 import { deleteRecipient } from '../api/delete';
 import useAsync from '../hooks/useAsync';
-import CardList from '../components/Edit/EditCardList';
+import CardList from '../components/edit/EditCardList';
 import HeaderService from '../components/HeaderService';
 import Button from '../components/elements/Button';
 import DESIGN_TOKEN from '../styles/tokens';
-
-const { typography, layout } = DESIGN_TOKEN;
 
 function EditPage() {
   const [isLoadingMessages, isErrorMessages, getRecipientMessageAsync] = useAsync(getRecipientMessages);
@@ -45,6 +43,7 @@ function EditPage() {
     handlePostBackground(id);
   }, [id, getRecipientMessageAsync, getRecipientAsync, emojiUpload]);
   const { results } = data;
+  const bgColor = bgData.backgroundColor;
   const bgImg = bgData.backgroundImageURL;
 
   const handleDeleteRecipients = async () => {
@@ -63,7 +62,7 @@ function EditPage() {
         setEmojiUpload={setEmojiUpload}
         emojiUpload={emojiUpload}
       />
-      <Container $bgImg={bgImg}>
+      <Container $bgImg={bgImg} $bgColor={bgColor}>
         <ContentWrapper>
           <ButtonWrapper>
             <Button type="button" variant="primary" width="92" height="large" onClick={handleDeleteRecipients}>
@@ -78,6 +77,8 @@ function EditPage() {
 }
 
 export default EditPage;
+
+const { typography, layout, color } = DESIGN_TOKEN;
 
 const ContentWrapper = styled.div`
   display: flex;
@@ -119,8 +120,16 @@ const ButtonWrapper = styled.div`
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
-  background-image: ${(props) => (props.$bgImg ? `url(${props.$bgImg})` : 'none')};
+  min-height: 100vh;
+  background: ${(props) => {
+    if (props.$bgImg) {
+      return `url(${props.$bgImg})`;
+    }
+    if (props.$bgColor) {
+      return color[props.$bgColor][200];
+    }
+    return color.white;
+  }};
   background-repeat: no-repeat;
   background-size: cover;
 `;

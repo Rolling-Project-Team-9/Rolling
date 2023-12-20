@@ -66,6 +66,8 @@ function HeaderService({ name, messageCount, recentMessages, topReactions, id, e
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
         setIsOpen(false);
+        setEmojiOpen(false);
+        setShareOpen(false);
       }
     };
 
