@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getRecipient } from '../api/users';
-import useAsync from '../hooks/useAsync';
 import logo from '../assets/images/logo.png';
 import Button from './elements/Button';
 import DESIGN_TOKEN from '../styles/tokens';
@@ -26,7 +24,7 @@ const Container = styled.div`
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
   @media (max-width: ${layout.breakpoint.mobile}) {
-    display: ${({ $location, id }) => ($location.includes(`/post/${id}`) ? 'none' : 'block')};
+    display: ${({ $location, id }) => ($location.startsWith(`/post/${id}`) && !$location.startsWith(`/post/${id}/message`) ? 'none' : 'block')};
   }
 `;
 const HorizontalDivider = styled.div`
@@ -35,11 +33,7 @@ const HorizontalDivider = styled.div`
 `;
 
 function GNB() {
-  const [isLoadingRecipient, isErrorRecipient, getRecipientAsync] = useAsync(getRecipient);
-  const [data, setData] = useState([]);
-  const [bgData, setBgData] = useState([]);
   const { id } = useParams();
-  const { name, messageCount, recentMessages, topReactions } = bgData;
   const [hasButton, setHasButton] = useState(false);
   const navigate = useNavigate();
   const onClick = () => navigate('/post');
@@ -55,19 +49,6 @@ function GNB() {
   useEffect(() => {
     handleButtonDisplay();
   }, [handleButtonDisplay]);
-
-  useEffect(() => {
-    const handlePostBackground = async (recipientId) => {
-      const result = await getRecipientAsync(recipientId);
-      if (!result) return;
-      const recipientData = result;
-      if (recipientData) {
-        setBgData(recipientData);
-      }
-    };
-
-    handlePostBackground(id);
-  }, [id, getRecipientAsync]);
 
   return (
     <>

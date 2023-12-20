@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
-import PlusButton from '../../assets/images/pulsbutton.png';
+import PlusButton from '../../assets/images/plusbutton.png';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 

@@ -43,6 +43,7 @@ function CreatePage() {
   });
 
   const [activeTab, setActiveTab] = useState(0);
+  console.log(values);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -55,7 +56,6 @@ function CreatePage() {
   };
 
   const handleChangeValues = (e) => {
-    console.log('change values', e.target.value);
     setValues((prevValues) => ({
       ...prevValues,
       [e.target.name]: e.target.value,
@@ -146,7 +146,7 @@ function CreatePage() {
               key={item.label}
               onClick={() => handleTabClick(index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
-              tabIndex={0}
+              tabIndex={index}
             >
               <TabButton type="button" className={index === activeTab ? 'active' : ''}>
                 {item.label}

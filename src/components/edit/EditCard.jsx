@@ -1,48 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DESIGN_TOKEN from '../../styles/tokens';
 import Avatar from '../elements/Avatar';
 import SenderName from '../elements/SenderName';
 import Badge from '../elements/Badge';
+import Button from '../elements/Button';
 import Date from '../elements/Date';
-import Modal from './Modal';
+import ICONS from '../../constants/Icons';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function MessagesCard({ sender, profileImageURL, relationship, content, createdAt, messageId, fontFamily = 'Noto Sans' }) {
-  const [modal, setModal] = useState(false);
-
-  const handleCardClick = () => {
-    setModal(true);
-  };
-  const handleCloseModal = () => {
-    setModal(false);
-  };
-
+function EditCard({
+  sender,
+  profileImageURL,
+  relationship,
+  content,
+  createdAt,
+  disabled,
+  handleDeleteMessage,
+  fontFamily = 'Noto Sans',
+}) {
   return (
-    <div>
-      <Container onClick={handleCardClick}>
-        <Wrapper>
-          <Profile>
-            <Avatar profileImageURL={profileImageURL} />
-            <SenderProfile>
-              <SenderName name={sender} />
-              <Badge relationship={relationship} />
-            </SenderProfile>
-          </Profile>
-        </Wrapper>
-        <Outlined />
-        <TextField $fontFamily={fontFamily}>{content}</TextField>
-        <DateContainer>
-          <Date font="font12Regular" createdAt={createdAt} />
-        </DateContainer>
-      </Container>
-      {modal && <Modal messageId={messageId} onClick={handleCloseModal} />}
-    </div>
+    <Container>
+      <Wrapper>
+        <Profile>
+          <Avatar profileImageURL={profileImageURL} />
+          <SenderProfile>
+            <SenderName name={sender} />
+            <Badge relationship={relationship} />
+          </SenderProfile>
+        </Profile>
+        <Button
+          variant="outlined"
+          width="40"
+          height="large"
+          icon={disabled ? ICONS.deleted.white : ICONS.deleted.black}
+          onClick={handleDeleteMessage}
+        />
+      </Wrapper>
+      <Outlined />
+      <TextFeild $fontFamily={fontFamily}>{content}</TextFeild>
+      <DateContainer>
+        <Date font="font12Regular" createdAt={createdAt} />
+      </DateContainer>
+    </Container>
   );
 }
-
-export default MessagesCard;
 
 const Container = styled.div`
   width: 38.4rem;
@@ -52,7 +55,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${color.white};
-  cursor: pointer;
 `;
 
 const Wrapper = styled.div`
@@ -81,9 +83,9 @@ const Outlined = styled.div`
   margin: 0 2.4rem;
 `;
 
-const TextField = styled.div`
+const TextFeild = styled.div`
   width: 33.6rem;
-  height: 10rem;
+  height: 10.6rem;
   margin: auto 2.4rem;
   overflow: hidden;
   display: -webkit-box;
@@ -95,3 +97,5 @@ const TextField = styled.div`
 const DateContainer = styled.div`
   margin: 1.6rem 27.6rem 2.4rem 2.4rem;
 `;
+
+export default EditCard;
