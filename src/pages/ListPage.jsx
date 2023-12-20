@@ -7,6 +7,8 @@ import Button from '../components/elements/Button';
 import PostCardList from '../components/list/PostCardList';
 import useAsync from '../hooks/useAsync';
 import DESIGN_TOKEN from '../styles/tokens';
+import Skeleton from '../components/elements/Skeleton';
+import CardListSkeleton from '../components/list/CardListSkeleton';
 
 const { layout, color, typography } = DESIGN_TOKEN;
 
@@ -41,17 +43,39 @@ function ListPage() {
       </Helmet>
       <PageContainer>
         <PostContainer>
-          <PostTitle>인기 롤링 페이퍼 🔥</PostTitle>
-          <PostCardList postList={hotPostList} />
+          {isLoading ? (
+            <>
+              <Skeleton type="postTitle" />
+              <CardListSkeleton />
+            </>
+          ) : (
+            <>
+              <PostTitle>인기 롤링 페이퍼 🔥</PostTitle>
+              <PostCardList postList={hotPostList} />
+            </>
+          )}
         </PostContainer>
         <PostContainer>
-          <PostTitle>최근에 만든 롤링 페이퍼 ⭐️️</PostTitle>
-          <PostCardList postList={latestPostList} />
+          {isLoading ? (
+            <>
+              <Skeleton type="postTitle" />
+              <CardListSkeleton />
+            </>
+          ) : (
+            <>
+              <PostTitle>최근에 만든 롤링 페이퍼 ⭐️️</PostTitle>
+              <PostCardList postList={latestPostList} />
+            </>
+          )}
         </PostContainer>
         <ButtonDiv>
-          <Button $variant="primary" height="x-large" onClick={handleButtonClick}>
-            나도 만들어 보기
-          </Button>
+          {isLoading ? (
+            <Skeleton type="button" />
+          ) : (
+            <Button $variant="primary" height="x-large" onClick={handleButtonClick}>
+              나도 만들어 보기
+            </Button>
+          )}
         </ButtonDiv>
       </PageContainer>
     </>
