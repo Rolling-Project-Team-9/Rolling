@@ -28,11 +28,16 @@ function MessageCardList({ results }) {
 export default MessageCardList;
 
 const Container = styled.div`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.8rem 2.4rem;
+  /* display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 2.4rem;
   column-gap: 2.8rem;
+  display: flex;
+  gap: 2.8rem 2.4rem;
   width: 120rem;
   margin: 0 auto;
-  padding-bottom: 11.3rem;
+  padding-bottom: 11.3rem; */
 `;

@@ -312,9 +312,10 @@ const InputRadio = styled.input`
 const StyledButton = styled.div`
   @media screen and (max-width: ${layout.breakpoint.mobile}) {
     position: fixed;
-    left: 2.4rem;
-    right: 2.4rem;
+    left: 0;
+    right: 0;
     bottom: 2.4rem;
+    padding: 0 2.4rem;
   }
 `;
 
