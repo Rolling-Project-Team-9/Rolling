@@ -155,9 +155,11 @@ function CreatePage() {
           ))}
         </TabList>
         <TabPanel role="tabpanel">{TABS[activeTab].content}</TabPanel>
-        <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={!values.name}>
-          생성하기
-        </Button>
+        <StyledButton>
+          <Button type="submit" variant="primary" height="x-large" onClick={handleSubmit} disabled={!values.name}>
+            생성하기
+          </Button>
+        </StyledButton>
       </form>
     </Container>
   );
@@ -167,6 +169,9 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 5.7rem 2.4rem;
   max-width: ${layout.breakpoint.mobile};
+  @media screen and (max-width: ${layout.breakpoint.mobile}) {
+    padding-bottom: 8rem;
+  }
 `;
 
 const Recipient = styled.div`
@@ -245,7 +250,9 @@ const TabButton = styled.button`
 
 const TabPanel = styled.div`
   margin-bottom: 6.9rem;
-  /* overflow-y: scroll; */ //미디어쿼리에서 사용해 주세요
+  @media screen and (max-width: ${layout.breakpoint.tablet}) {
+    overflow-y: scroll;
+  }
 `;
 
 const InputRadioGroup = styled.div`
@@ -279,6 +286,9 @@ const InputRadio = styled.input`
     display: block;
     width: 4.4rem;
     height: 4.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &:checked:after {
@@ -291,6 +301,15 @@ const InputRadio = styled.input`
     border-radius: 50%;
     cursor: pointer;
     background: ${color.gray[500]} url('${checkIcon}') no-repeat center/ 2.4rem 2.4rem;
+  }
+`;
+
+const StyledButton = styled.div`
+  @media screen and (max-width: ${layout.breakpoint.mobile}) {
+    position: fixed;
+    left: 2.4rem;
+    right: 2.4rem;
+    bottom: 2.4rem;
   }
 `;
 
