@@ -29,10 +29,15 @@ const SKELETON_TYPE = {
     height: 28rem;
     border-radius: 1.6rem;
   `,
-  button: css`
+  createButton: css`
     width: 100%;
     height: 5.6rem;
     border-radius: 1.2rem;
+  `,
+  editButton: css`
+    width: 9.2rem;
+    height: 4rem;
+    border-radius: 0.6rem;
   `,
 };
 

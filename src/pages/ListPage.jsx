@@ -70,7 +70,7 @@ function ListPage() {
         </PostContainer>
         <ButtonDiv>
           {isLoading ? (
-            <Skeleton type="button" />
+            <Skeleton type="createButton" />
           ) : (
             <Button $variant="primary" height="x-large" onClick={handleButtonClick}>
               나도 만들어 보기

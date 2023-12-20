@@ -8,6 +8,8 @@ import Button from '../components/elements/Button';
 import MessageCardList from '../components/post/MessageCardList';
 import useAsync from '../hooks/useAsync';
 import DESIGN_TOKEN from '../styles/tokens';
+import Skeleton from '../components/elements/Skeleton';
+import MessageCardSkeleton from '../components/post/MessageCardSkeleton';
 
 function PostPage() {
   const [isLoadingMoreMessages, isErrorMoreMessages, getMoreRecipientMessageAsync] = useAsync(getMoreRecipientMessages);
@@ -75,24 +77,32 @@ function PostPage() {
       <Helmet>
         <title>{name && `${name.slice(0, 13)} | Rolling`}</title>
       </Helmet>
-      <HeaderService
-        name={name}
-        messageCount={messageCount}
-        recentMessages={recentMessages}
-        topReactions={topReactions}
-        id={id}
-        setEmojiUpload={setEmojiUpload}
-        emojiUpload={emojiUpload}
-        bgImg={bgImg}
-      />
+      {isLoadingRecipient ? (
+        <Skeleton type="header" />
+      ) : (
+        <HeaderService
+          name={name}
+          messageCount={messageCount}
+          recentMessages={recentMessages}
+          topReactions={topReactions}
+          id={id}
+          setEmojiUpload={setEmojiUpload}
+          emojiUpload={emojiUpload}
+          bgImg={bgImg}
+        />
+      )}
       <Container $bgImg={bgImg} $bgColor={bgColor}>
         <ContentWrapper>
           <StyledButton>
-            <Button type="button" $variant="primary" width="92" height="large" onClick={handleNavigate}>
-              편집하기
-            </Button>
+            {isLoadingRecipient ? (
+              <Skeleton type="editButton" />
+            ) : (
+              <Button type="button" $variant="primary" width="92" height="large" onClick={handleNavigate}>
+                편집하기
+              </Button>
+            )}
           </StyledButton>
-          <MessageCardList results={data} />
+          {isLoadingRecipient ? <MessageCardSkeleton /> : <MessageCardList results={data} />}
           <MoreMessages ref={target} />
         </ContentWrapper>
         <MoreMessages ref={target} />
