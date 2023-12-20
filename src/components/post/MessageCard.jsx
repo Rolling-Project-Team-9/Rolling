@@ -9,7 +9,15 @@ import Modal from './Modal';
 
 const { color, boxShadow } = DESIGN_TOKEN;
 
-function MessagesCard({ sender, profileImageURL, relationship, content, createdAt, messageId, fontFamily = 'Noto Sans' }) {
+function MessagesCard({
+  sender,
+  profileImageURL,
+  relationship,
+  content,
+  createdAt,
+  messageId,
+  fontFamily = 'Noto Sans KR',
+}) {
   const [modal, setModal] = useState(false);
 
   const handleCardClick = () => {
@@ -32,7 +40,7 @@ function MessagesCard({ sender, profileImageURL, relationship, content, createdA
           </Profile>
         </Wrapper>
         <Outlined />
-        <TextField $fontFamily={fontFamily}>{content}</TextField>
+        <TextFelid $fontFamily={fontFamily}>{content}</TextFelid>
         <DateContainer>
           <Date font="font12Regular" createdAt={createdAt} />
         </DateContainer>
@@ -81,7 +89,7 @@ const Outlined = styled.div`
   margin: 0 2.4rem;
 `;
 
-const TextField = styled.div`
+const TextFelid = styled.div`
   width: 33.6rem;
   height: 10rem;
   margin: auto 2.4rem;
