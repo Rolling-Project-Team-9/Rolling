@@ -3,10 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { getRecipient, getMoreRecipientMessages } from '../api/users';
 import HeaderService from '../components/HeaderService';
+import Button from '../components/elements/Button';
 import MessageCardList from '../components/post/MessageCardList';
 import useAsync from '../hooks/useAsync';
 import DESIGN_TOKEN from '../styles/tokens';
-import Button from '../components/elements/Button';
 
 function PostPage() {
   const [isLoadingMoreMessages, isErrorMoreMessages, getMoreRecipientMessageAsync] = useAsync(getMoreRecipientMessages);
@@ -90,6 +90,7 @@ function PostPage() {
           <MessageCardList results={data} />
           <MoreMessages ref={target} />
         </ContentWrapper>
+        <MoreMessages ref={target} />
       </Container>
     </div>
   );
