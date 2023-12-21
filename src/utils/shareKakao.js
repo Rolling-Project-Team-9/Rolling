@@ -2,10 +2,11 @@ import LogoImg from '../assets/images/logo.png';
 
 const shareKakao = (url, name, backgroundImageURL) => {
   const image = backgroundImageURL || LogoImg;
-  console.log(url);
+
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
+      kakao.cleanup();
       kakao.init('d4e0d6aa8be82a57ce34a4b1e4bae59b');
     }
     kakao.Link.sendDefault({
