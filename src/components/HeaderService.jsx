@@ -273,6 +273,10 @@ const EmojiPickerWrapper = styled.div`
     right: 100%;
     transform: translateX(3.6rem);
   }
+  @media (max-width: 402px) {
+    right: -100%;
+    transform: translateX(3.6rem);
+  }
 `;
 
 const ShareWrapper = styled.div`
