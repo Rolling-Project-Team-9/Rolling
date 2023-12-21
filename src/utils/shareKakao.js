@@ -2,6 +2,7 @@ import LogoImg from '../assets/images/logo.png';
 
 const shareKakao = (url, name, backgroundImageURL) => {
   const image = backgroundImageURL || LogoImg;
+  console.log(url);
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
@@ -14,14 +15,14 @@ const shareKakao = (url, name, backgroundImageURL) => {
         description: `${name}님에게 편지를 보내세요`,
         imageUrl: image,
         link: {
-          webUrl: url,
+          mobileWebUrl: url,
         },
       },
       buttons: [
         {
           title: name,
           link: {
-            webUrl: url,
+            mobileWebUrl: url,
           },
         },
       ],
