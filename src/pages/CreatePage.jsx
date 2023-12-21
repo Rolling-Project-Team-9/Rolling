@@ -123,7 +123,7 @@ function CreatePage() {
   return (
     <>
       <Helmet>
-        <title>Post</title>
+        <title>롤링페이퍼 만들기 | Rolling</title>
       </Helmet>
       <Container>
         <form>

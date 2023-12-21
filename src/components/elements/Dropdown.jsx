@@ -8,7 +8,7 @@ const { color, layout } = DESIGN_TOKEN;
 
 const Container = styled.div`
   position: relative;
-
+  ${layout.zIndex.dropdown};
   button {
     display: flex;
     position: relative;

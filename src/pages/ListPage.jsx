@@ -37,7 +37,7 @@ function ListPage() {
   return (
     <>
       <Helmet>
-        <title>List</title>
+        <title>List | Rolling</title>
       </Helmet>
       <PageContainer>
         <PostContainer>
