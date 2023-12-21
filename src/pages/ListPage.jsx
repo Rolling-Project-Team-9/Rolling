@@ -89,17 +89,33 @@ const PageContainer = styled.div`
   width: 120rem;
   margin: 5rem auto 19.4rem;
   gap: 5rem;
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    width: 100%;
+    margin: 5rem auto
+  }
 `;
 
 const PostContainer = styled.div`
   width: 100%;
   gap: 1.6rem;
+  @media (max-width: ${layout.breakpoint.pc}) {
+    margin-left: 2.4rem;
+  }
 `;
 
 const PostTitle = styled.div`
-  width: 100%;
+  width: fit-content;
   color: ${color.black};
   ${typography.font24Bold}
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    margin-left: 2.4rem;
+  }
+
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    margin-left: 2rem;
+  }
 `;
 
 const ButtonDiv = styled.div`
@@ -112,6 +128,11 @@ const ButtonDiv = styled.div`
   padding-bottom: 2.4rem;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: ${layout.breakpoint.tablet}) {
+    width: calc(100% - 4.8rem);
+
+  }
 `;
 
 export default ListPage;
