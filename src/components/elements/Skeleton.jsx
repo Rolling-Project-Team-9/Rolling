@@ -39,14 +39,16 @@ const SKELETON_TYPE = {
     height: 4rem;
     border-radius: 0.6rem;
   `,
+  optionImg: css`
+    width: 16.8rem;
+    height: 16.8rem;
+    border-radius: 1.2rem;
+  `,
 };
 
 const loading = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100vw);
+  50% {
+    opacity: 0.2;
   }
 `;
 
@@ -57,15 +59,5 @@ const SkeletonBox = styled.div`
     ${SKELETON_TYPE[type]}
   `};
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10rem;
-    height: 100%;
-    background: linear-gradient(to right, ${color.gray[200]} 15%, ${color.gray[300]} 35% 55%, ${color.gray[200]} 80%);
-    animation: ${loading} 2s infinite linear;
-  }
+  animation: ${loading} 2s ease-in-out infinite;
 `;
