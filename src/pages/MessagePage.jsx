@@ -136,13 +136,10 @@ const Container = styled.div`
   max-width: ${layout.breakpoint.mobile};
   margin: 0 auto;
   padding: 5.7rem 2.4rem;
-<<<<<<< HEAD
   @media screen and (max-width: ${layout.breakpoint.mobile}) {
     padding-top: 5rem;
     padding-bottom: 22.6rem;
   }
-=======
->>>>>>> a9706af (Fix: 반응형 스타일 구현 수정)
 `;
 
 const Section = styled.div`
@@ -189,14 +186,11 @@ const StyledAvatar = styled.div`
 `;
 
 const SubmitButton = styled.div`
-<<<<<<< HEAD
   position: fixed;
   left: 2.4rem;
   right: 2.4rem;
   bottom: 2.4rem;
   margin-top: 1.2rem;
-=======
->>>>>>> a9706af (Fix: 반응형 스타일 구현 수정)
   @media screen and (max-width: ${layout.breakpoint.mobile}) {
     position: fixed;
     left: 0;
