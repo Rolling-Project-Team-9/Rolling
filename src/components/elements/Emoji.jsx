@@ -15,8 +15,10 @@ const EmojiDiv = styled.div`
   border-radius: 32px;
   background: ${overlayBackDropColor.badge};
   @media (max-width: ${layout.breakpoint.mobile}) {
+
     width: 5.3rem;
     height: 2.8rem;
+
     padding: 0.4rem 0.8rem;
     gap: 0.6rem;
   }

@@ -113,7 +113,7 @@ const StyledButton = styled.div`
     bottom: 2.4rem;
     padding: 0 2.4rem;
     margin-bottom: 0;
-
+  
     button {
       width: 100%;
       height: 5.6rem;

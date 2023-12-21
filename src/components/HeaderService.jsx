@@ -198,6 +198,7 @@ const Container = styled.div`
     height: 10.4rem;
     padding: 0.8rem 2rem;
     gap: 0.8rem;
+
   }
 `;
 const Wrapper = styled.div`
@@ -280,10 +281,12 @@ const EmojiPickerWrapper = styled.div`
     right: 100%;
     transform: translateX(3.6rem);
   }
+
   @media (max-width: 402px) {
     right: -100%;
     transform: translateX(3.6rem);
   }
+
 `;
 
 const ShareWrapper = styled.div`

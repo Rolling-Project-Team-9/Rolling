@@ -173,6 +173,12 @@ const OptionAvatar = styled.div`
   gap: 1.2rem;
 `;
 
+const OptionAvatar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+`;
+
 const StyledAvatar = styled.div`
   grid-area: image;
   display: flex;
