@@ -2,7 +2,6 @@ import LogoImg from '../assets/images/logo.png';
 
 const shareKakao = (url, name, backgroundImageURL) => {
   const image = backgroundImageURL || LogoImg;
-
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
@@ -11,8 +10,8 @@ const shareKakao = (url, name, backgroundImageURL) => {
     kakao.Link.sendDefault({
       objectType: 'feed',
       content: {
-        title: `Rolling | ${name.slice(0, -4)}`,
-        description: `${name.slice(0, -4)}님에게 편지를 보내세요`,
+        title: `Rolling | ${name}`,
+        description: `${name}님에게 편지를 보내세요`,
         imageUrl: image,
         link: {
           webUrl: url,
