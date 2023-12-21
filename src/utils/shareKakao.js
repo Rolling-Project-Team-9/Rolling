@@ -1,4 +1,8 @@
-const shareKakao = (url, name, image) => {
+import LogoImg from '../assets/images/logo.png';
+
+const shareKakao = (url, name, backgroundImageURL) => {
+  const image = backgroundImageURL || LogoImg;
+
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
