@@ -17,7 +17,7 @@
     <tr>
       <td align="center"><a href="https://github.com/kimbobby">
       <img width=200px src="https://velog.velcdn.com/images/ynmkim/post/1b0d1275-a0f9-4af0-addf-66ca92f70dbe/image.png" alt=""/><br />
-      <sub><b>[FE] 이주현</b></sub></a><br /></td>
+      <sub><b>[FE] 김주현</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/eonpain">
       <img width=200px src="https://velog.velcdn.com/images/ynmkim/post/87530a1d-22d7-4f07-8f53-18fff05262c1/image.png" alt=""/><br />
       <sub><b>[FE] 이준기</b></sub></a><br /></td>
