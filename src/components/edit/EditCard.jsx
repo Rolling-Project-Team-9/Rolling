@@ -85,7 +85,7 @@ const TextField = styled.div`
   min-height: 10.6rem;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   font-family: ${({ $fontFamily }) => $fontFamily};
 `;

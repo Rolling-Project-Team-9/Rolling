@@ -14,6 +14,7 @@ const EmojiDiv = styled.div`
   background: ${overlayBackDropColor.badge};
   @media (max-width: ${layout.breakpoint.mobile}) {
     padding: 0.4rem 0.8rem;
+    gap: 0.6rem;
   }
 `;
 

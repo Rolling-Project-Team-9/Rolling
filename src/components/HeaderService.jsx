@@ -201,6 +201,9 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: ${layout.breakpoint.mobile}) {
+    align-self: end;
+  }
 `;
 
 const HorizontalDivider = styled.div`
@@ -235,15 +238,14 @@ const Reactions = styled.div`
   align-items: center;
   position: relative;
 `;
-const EmojiExpanded = styled.span`
+const EmojiExpanded = styled.div`
   background: ${color.white};
   padding: 2.4rem;
   position: absolute;
   right: 0;
   top: 4.3rem;
   display: grid;
-  grid-template-columns: repeat(4, 5.6rem);
-  grid-template-rows: repeat(auto-fit, 3.8rem);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem 0.8rem;
   border-radius: 0.8rem;
   border: 1px solid #b6b6b6;
@@ -251,6 +253,7 @@ const EmojiExpanded = styled.span`
   @media (max-width: ${layout.breakpoint.mobile}) {
     left: 0;
     right: auto;
+    padding: 1.6rem;
   }
 `;
 
@@ -267,8 +270,8 @@ const EmojiPickerWrapper = styled.div`
   right: 0;
   top: 4.3rem;
   @media (max-width: ${layout.breakpoint.mobile}) {
-    left: auto;
-    right: -44px;
+    right: 100%;
+    transform: translateX(3.6rem);
   }
 `;
 

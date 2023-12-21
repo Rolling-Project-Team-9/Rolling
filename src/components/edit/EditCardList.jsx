@@ -42,16 +42,16 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(30rem, 38.4rem));
   justify-content: space-between;
-  gap: 2.8rem calc(1.6rem);
+@media (max-width: ${layout.breakpoint.mobile}) {
+    display: flex;
+    flex-direction: column;
+  }  gap: 2.8rem calc(1.6rem);
 
   @media (max-width: ${layout.breakpoint.tablet}) {
     grid-template-columns: repeat(2, minmax(30rem, 50rem));
     gap: 1.6rem;
   }
-  @media (max-width: ${layout.breakpoint.mobile}) {
-    display: flex;
-    flex-direction: column;
-  }
+  
 `;
 
 export default CardList;
