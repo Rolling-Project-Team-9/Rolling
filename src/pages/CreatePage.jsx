@@ -18,20 +18,6 @@ const IMAGE_VALUES = [
   'https://ymkimstorage.s3.ap-northeast-2.amazonaws.com/optionImage3.png',
   'https://ymkimstorage.s3.ap-northeast-2.amazonaws.com/optionImage4.png',
 ];
-const VARIANT_STYLE = {
-  color: css`
-    background: ${({ value }) => value && color[value][200]};
-    &:hover {
-      border: 3px solid ${({ value }) => color[value][300]};
-    }
-  `,
-  image: css`
-    background-image: ${({ value }) => `url('${value}')`};
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  `,
-};
 
 function CreatePage() {
   const [isLoading, isError, createRecipientAsync] = useAsync(createRecipient);
@@ -173,6 +159,21 @@ function CreatePage() {
     </>
   );
 }
+
+const VARIANT_STYLE = {
+  color: css`
+    background: ${({ value }) => value && color[value][200]};
+    &:hover {
+      border: 3px solid ${({ value }) => color[value][300]};
+    }
+  `,
+  image: css`
+    background-image: ${({ value }) => `url('${value}')`};
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  `,
+};
 
 const Container = styled.div`
   margin: 0 auto;
