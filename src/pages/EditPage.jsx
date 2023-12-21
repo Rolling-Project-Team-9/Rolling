@@ -91,7 +91,7 @@ const ContentWrapper = styled.div`
   margin: 0 auto;
   padding: 6.3rem 2.4rem;
 
-  @media (max-width: ${layout.breakpoint.mobile}) {
+  @media (max-width: ${layout.breakpoint.tablet}) {
     padding: 2.4rem 2.4rem 10.4rem;
   }
 `;
@@ -102,7 +102,7 @@ const StyledButton = styled.div`
   width: 100%;
   margin-bottom: 1.1rem;
 
-  @media (max-width: ${layout.breakpoint.mobile}) {
+  @media (max-width: ${layout.breakpoint.tablet}) {
     position: fixed;
     left: 0;
     right: 0;
