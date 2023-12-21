@@ -105,7 +105,6 @@ function PostPage() {
           {isLoadingRecipient ? <MessageCardSkeleton /> : <MessageCardList results={data} />}
           <MoreMessages ref={target} />
         </ContentWrapper>
-        <MoreMessages ref={target} />
       </Container>
     </div>
   );
