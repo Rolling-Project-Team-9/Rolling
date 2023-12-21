@@ -1,7 +1,7 @@
 ## Rolling-Project-Team-9
 
 > 코드잇 스프린트 : 프론트 엔드 2기 Part2 - 9팀
-개발 기간: 2023. 11.8 ~ 11.22 (2주)
+개발 기간: 2023. 12.9 ~ 12.22
 
 배포 URL: https://rolling-team9.netlify.app/
 
