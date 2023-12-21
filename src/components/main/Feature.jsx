@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import introducePoint1 from '../../assets/images/cardBundle.png';
 import introducePoint2 from '../../assets/images/emojiBundle.png';
@@ -55,9 +55,16 @@ const Container = styled.div`
   }
 `;
 
+const ButtonGlow = keyframes`
+50%{
+  opacity: 0.6;
+}
+`;
+
 const StyledLink = styled.div`
   position: fixed;
   bottom: 3.8rem;
+  animation: ${ButtonGlow} 2s ease-in-out infinite;
 
   @media (max-width: ${layout.breakpoint.tablet}) {
     left: 0;

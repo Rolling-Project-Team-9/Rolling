@@ -154,7 +154,7 @@ const Container = styled.div`
       return `url(${props.$bgImg})`;
     }
     if (props.$bgColor) {
-      return color[props.$bgColor][200];
+      return color.xMas[props.$bgColor][200];
     }
     return color.white;
   }};
