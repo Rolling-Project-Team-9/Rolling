@@ -1,7 +1,7 @@
 ## Rolling-Project-Team-9
 
 > 코드잇 스프린트 : 프론트 엔드 2기 Part2 - 9팀
-> 
+>
 > 개발 기간: 2023. 12.9 ~ 12.22
 
 
@@ -26,7 +26,8 @@ URL: https://rolling-team9.netlify.app/
   
   - `리액션` 친구의 롤링페이퍼에 이모지로 공감해 주세요.
 
-## 💡 팀원 소개
+
+### 💡팀원 소개
 
 <table>
   <tbody>
