@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { getRecipientList } from '../api/users';
 import Button from '../components/elements/Button';
@@ -92,7 +92,7 @@ const PageContainer = styled.div`
 
   @media (max-width: ${layout.breakpoint.tablet}) {
     width: 100%;
-    margin: 5rem auto
+    margin: 5rem auto;
   }
 `;
 
@@ -118,6 +118,12 @@ const PostTitle = styled.div`
   }
 `;
 
+const ButtonGlow = keyframes`
+50%{
+  opacity: 0.6;
+}
+`;
+
 const ButtonDiv = styled.div`
   z-index: 1;
   display: flex;
@@ -128,10 +134,10 @@ const ButtonDiv = styled.div`
   padding-bottom: 2.4rem;
   justify-content: center;
   align-items: center;
+  animation: ${ButtonGlow} 2s ease-in-out infinite;
 
   @media (max-width: ${layout.breakpoint.tablet}) {
     width: calc(100% - 4.8rem);
-
   }
 `;
 

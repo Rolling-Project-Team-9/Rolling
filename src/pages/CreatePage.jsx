@@ -159,12 +159,12 @@ function CreatePage() {
     </>
   );
 }
-
 const VARIANT_STYLE = {
   color: css`
-    background: ${({ value }) => value && color[value][200]};
+    /* background: ${({ value }) => value && color[value][200]}; */
+    background: ${({ value }) => value && color.xMas[value][200]};
     &:hover {
-      border: 3px solid ${({ value }) => color[value][300]};
+      border: 3px solid ${({ value }) => color.xMas[value][300]};
     }
   `,
   image: css`
@@ -172,6 +172,9 @@ const VARIANT_STYLE = {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    &:hover {
+      border: 3px solid ${color.green[550]};
+    }
   `,
 };
 
@@ -216,10 +219,10 @@ const Tab = styled.li`
   flex: 1 1 0;
   button {
     &.active {
-      border: 2px solid ${color.purple[600]};
+      border: 2px solid ${color.red[900]};
       background-color: ${color.white};
       font-weight: 700;
-      color: ${color.purple[600]};
+      color: ${color.red[900]};
     }
   }
 `;
