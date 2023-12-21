@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   word-break: break-all;
   @media (max-width: ${layout.breakpoint.mobile}) {
     ${typography.font18Bold}
+    padding: 0.4rem 0;
   }
 `;
 
